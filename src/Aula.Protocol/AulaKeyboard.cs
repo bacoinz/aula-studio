@@ -100,6 +100,37 @@ public sealed class AulaKeyboard(IAulaTransport transport, TimeSpan? commandDela
         Send(Commands.Apply(), readback: true);
     }
 
+    private static readonly TimeSpan RealtimeCommandDelay = TimeSpan.FromMilliseconds(5);
+    private static readonly TimeSpan RealtimeSliceDelay = TimeSpan.FromMilliseconds(2);
+
+    /// <summary>
+    /// Shows one live frame of per-key colours (FUN_00432920 via FUN_0044efb0, used for music mode).
+    /// Paced at 5 ms per command and 2 ms per slice like the vendor, so it can run ~20 times a second.
+    /// The firmware only updates the keys listed; send dark keys as black to turn them off.
+    /// </summary>
+    public void SendRealtimeFrame(IReadOnlyDictionary<int, (byte R, byte G, byte B)> colors)
+    {
+        var frame = Commands.RealtimeFrame(colors);
+        SendFast(Commands.RealtimeInit());
+        for (var offset = 0; offset < frame.Length; offset += Commands.ReportSize)
+        {
+            transport.SetFeature(frame.AsSpan(offset, Commands.ReportSize));
+            Trace?.Invoke($"set+{offset}", frame[offset..(offset + Commands.ReportSize)]);
+            _sleep(RealtimeSliceDelay);
+        }
+        SendFast(Commands.Apply());
+    }
+
+    private void SendFast(byte[] report)
+    {
+        _sleep(RealtimeCommandDelay);
+        transport.SetFeature(report);
+        Trace?.Invoke("set", report);
+        _sleep(RealtimeCommandDelay);
+        var reply = transport.GetFeature(report);
+        Trace?.Invoke("get", reply);
+    }
+
     /// <summary>Uploads an image to the screen. Writes the keyboard's flash; aborts on the first missing acknowledgement.</summary>
     public void UploadLcdImage(LcdImage image, IProgress<double>? progress = null, CancellationToken cancel = default)
     {

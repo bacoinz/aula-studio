@@ -268,4 +268,22 @@
   <data name="Profiles_FileType" xml:space="preserve"><value>Perfil AULA Studio</value></data>
   <data name="Profiles_Exported" xml:space="preserve"><value>Perfil exportado.</value></data>
   <data name="Profiles_ImportFailed" xml:space="preserve"><value>Não foi possível ler este ficheiro de perfil.</value></data>
+  <data name="Nav_Music" xml:space="preserve"><value>Música</value></data>
+  <data name="Music_Title" xml:space="preserve"><value>Luzes com a música</value></data>
+  <data name="Music_Hint" xml:space="preserve"><value>As luzes do teclado reagem ao som que está a tocar no PC (Spotify, YouTube, jogos…). Não é preciso microfone.</value></data>
+  <data name="Music_Start" xml:space="preserve"><value>Começar</value></data>
+  <data name="Music_Stop" xml:space="preserve"><value>Parar</value></data>
+  <data name="Music_StateIdle" xml:space="preserve"><value>Desligado. Põe música a tocar e carrega em Começar.</value></data>
+  <data name="Music_StateRunning" xml:space="preserve"><value>A reagir ao som do PC. Podes mudar de página; continua a funcionar.</value></data>
+  <data name="Music_StateNoKeyboard" xml:space="preserve"><value>Liga o teclado por cabo para usar este modo.</value></data>
+  <data name="Music_Effect" xml:space="preserve"><value>Efeito</value></data>
+  <data name="Music_EffectBars" xml:space="preserve"><value>Barras de espectro</value></data>
+  <data name="Music_EffectPulse" xml:space="preserve"><value>Pulsação com o grave</value></data>
+  <data name="Music_EffectRipple" xml:space="preserve"><value>Ondas do centro</value></data>
+  <data name="Music_Colors" xml:space="preserve"><value>Cores</value></data>
+  <data name="Music_ColorHeat" xml:space="preserve"><value>Verde → vermelho</value></data>
+  <data name="Music_ColorRainbow" xml:space="preserve"><value>Arco-íris</value></data>
+  <data name="Music_ColorSingle" xml:space="preserve"><value>Uma cor</value></data>
+  <data name="Music_Sensitivity" xml:space="preserve"><value>Sensibilidade</value></data>
+  <data name="Music_Note" xml:space="preserve"><value>Funciona enquanto a app estiver aberta (também na bandeja). Ao parar, o teclado volta à iluminação que tinhas; qualquer outra alteração ao teclado também termina este modo.</value></data>
 </root>

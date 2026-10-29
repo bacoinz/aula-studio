@@ -115,6 +115,26 @@ static int Run(string[] args)
                 return 0;
             }
 
+            case "realtime-test":
+            {
+                // Sweeps a lit block across light indices 1–123 for 3 s and reports the frame rate.
+                using var kb = Open(args);
+                using var timer = new Aula.Protocol.Native.TimerResolution();
+                var clock = System.Diagnostics.Stopwatch.StartNew();
+                var frames = 0;
+                while (clock.Elapsed < TimeSpan.FromSeconds(args.Contains("--long") ? 10 : 3))
+                {
+                    var head = frames % 123 + 1;
+                    var block = args.Skip(1).Where(a => a.StartsWith("block=")).Select(a => int.Parse(a[6..])).DefaultIfEmpty(6).First();
+                    var colors = Enumerable.Range(head, block).Select(i => (i - 1) % 123 + 1).Distinct()
+                        .ToDictionary(i => i, _ => ((byte)0, (byte)200, (byte)255));
+                    kb.SendRealtimeFrame(colors);
+                    frames++;
+                }
+                Console.WriteLine($"{frames} frames in {clock.Elapsed.TotalSeconds:F1} s = {frames / clock.Elapsed.TotalSeconds:F1} fps");
+                return 0;
+            }
+
             case "macro-test":
             {
                 // Macro slot 0 types "ab"; bind a key to it with: keymap <idx>:06000000

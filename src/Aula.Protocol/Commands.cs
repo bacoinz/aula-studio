@@ -157,6 +157,38 @@ public static class Commands
         return t;
     }
 
+    /// <summary>Live per-key frame init (FUN_00432920): 04 20, byte 8 = 8 for RGB keyboards.</summary>
+    public static byte[] RealtimeInit()
+    {
+        var r = Cmd(0x04, 0x20);
+        r[8] = 0x08;
+        return r;
+    }
+
+    public const int RealtimeFrameSize = 0x200;
+
+    /// <summary>
+    /// Live per-key frame (FUN_00432920): packed [light, R, G, B] entries, one per lit key, zero-padded to 512 bytes.
+    /// Unlike the per-key table, entries are sequential rather than placed at light·4.
+    /// </summary>
+    public static byte[] RealtimeFrame(IReadOnlyDictionary<int, (byte R, byte G, byte B)> colors)
+    {
+        if (colors.Count > RealtimeFrameSize / 4)
+            throw new ArgumentException("Too many keys for one frame.", nameof(colors));
+        var f = new byte[RealtimeFrameSize];
+        var p = 0;
+        foreach (var (index, (r, g, b)) in colors.OrderBy(kv => kv.Key))
+        {
+            if (index is < 1 or > 255) throw new ArgumentOutOfRangeException(nameof(colors), $"Light index {index} is invalid.");
+            f[p] = (byte)index;
+            f[p + 1] = r;
+            f[p + 2] = g;
+            f[p + 3] = b;
+            p += 4;
+        }
+        return f;
+    }
+
     /// <summary>Starts a macro upload (FUN_0042d630); it takes the place of 04 18.</summary>
     public static byte[] MacroInit() => Cmd(0x04, 0x19);
 

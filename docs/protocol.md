@@ -105,3 +105,14 @@ Source: FUN_00414230. Verified: locking the Win key. The lock byte order comes f
   - response: debounce level 1–5;
   - fnToggle: 0 = while held, 1 = tap to toggle.
 - **Fresh vendor install:** all 0, except response = 1.
+
+## Live per-key frames, used by music mode (HW)
+
+Source: FUN_00432920 (wired; the 2.4G path FUN_00432b60 sends band levels instead). Verified with music mode at about 22 fps.
+
+- **Sequence:** `04 20` with byte 8 = 8 (RGB keyboards; 3 is the on/off variant) RB, a 512-byte frame as eight 64-byte reports 2 ms apart, `04 02` RB.
+- **Short-command pacing:** 5 ms instead of 35 ms (FUN_0044efb0).
+- **Frame:** packed `[light R G B]` entries, sequential rather than at light·4, zero-padded.
+- The firmware updates only the keys listed, so every frame must list all keys, with dark ones as `00 00 00`.
+- An empty frame makes the keyboard drop back to its stored effect.
+- Windows' default 15.6 ms timer turns the 2–5 ms pauses into about 5 fps; raise it with `timeBeginPeriod(1)` while streaming.

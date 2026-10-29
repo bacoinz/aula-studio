@@ -268,4 +268,22 @@
   <data name="Profiles_FileType" xml:space="preserve"><value>AULA Studio profile</value></data>
   <data name="Profiles_Exported" xml:space="preserve"><value>Profile exported.</value></data>
   <data name="Profiles_ImportFailed" xml:space="preserve"><value>This profile file couldn't be read.</value></data>
+  <data name="Nav_Music" xml:space="preserve"><value>Music</value></data>
+  <data name="Music_Title" xml:space="preserve"><value>Music lighting</value></data>
+  <data name="Music_Hint" xml:space="preserve"><value>The keyboard lights react to whatever is playing on the PC (Spotify, YouTube, games…). No microphone needed.</value></data>
+  <data name="Music_Start" xml:space="preserve"><value>Start</value></data>
+  <data name="Music_Stop" xml:space="preserve"><value>Stop</value></data>
+  <data name="Music_StateIdle" xml:space="preserve"><value>Off. Play some music and press Start.</value></data>
+  <data name="Music_StateRunning" xml:space="preserve"><value>Reacting to the PC's sound. You can switch pages; it keeps going.</value></data>
+  <data name="Music_StateNoKeyboard" xml:space="preserve"><value>Connect the keyboard by cable to use this mode.</value></data>
+  <data name="Music_Effect" xml:space="preserve"><value>Effect</value></data>
+  <data name="Music_EffectBars" xml:space="preserve"><value>Spectrum bars</value></data>
+  <data name="Music_EffectPulse" xml:space="preserve"><value>Bass pulse</value></data>
+  <data name="Music_EffectRipple" xml:space="preserve"><value>Ripples from the centre</value></data>
+  <data name="Music_Colors" xml:space="preserve"><value>Colours</value></data>
+  <data name="Music_ColorHeat" xml:space="preserve"><value>Green → red</value></data>
+  <data name="Music_ColorRainbow" xml:space="preserve"><value>Rainbow</value></data>
+  <data name="Music_ColorSingle" xml:space="preserve"><value>One colour</value></data>
+  <data name="Music_Sensitivity" xml:space="preserve"><value>Sensitivity</value></data>
+  <data name="Music_Note" xml:space="preserve"><value>Works while the app is open (in the tray too). When you stop, the keyboard goes back to your lighting; any other change to the keyboard also ends this mode.</value></data>
 </root>

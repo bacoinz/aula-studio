@@ -12,6 +12,9 @@ public partial class App : Application
     public static AppSettings Settings { get; private set; } = new();
     public static KeyboardService Keyboard { get; } = new();
 
+    private static MusicMode? _music;
+    public static MusicMode Music => _music ??= new MusicMode();
+
     /// <summary>Raised when a profile replaces the current setup, so pages reload what they show.</summary>
     public static event Action? ConfigurationReplaced;
 

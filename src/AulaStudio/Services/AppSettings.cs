@@ -45,6 +45,8 @@ public sealed class AppSettings
 
     public List<Profile> Profiles { get; set; } = [];
 
+    public MusicSettings Music { get; set; } = new();
+
     public Dictionary<int, uint> KeyMapFor(KeyLayer layer) => layer == KeyLayer.Fn ? FnKeyMap : KeyMap;
 
     public static AppSettings Load()

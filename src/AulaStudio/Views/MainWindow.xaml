@@ -28,6 +28,9 @@
                 <ui:NavigationViewItem Content="{l:Tr Nav_Lighting}" TargetPageType="{x:Type pages:LightingPage}">
                     <ui:NavigationViewItem.Icon><ui:SymbolIcon Symbol="Lightbulb24" /></ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
+                <ui:NavigationViewItem Content="{l:Tr Nav_Music}" TargetPageType="{x:Type pages:MusicPage}">
+                    <ui:NavigationViewItem.Icon><ui:SymbolIcon Symbol="MusicNote224" /></ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
                 <ui:NavigationViewItem Content="{l:Tr Nav_Keys}" TargetPageType="{x:Type pages:KeysPage}">
                     <ui:NavigationViewItem.Icon><ui:SymbolIcon Symbol="Keyboard24" /></ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
