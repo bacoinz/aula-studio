@@ -68,4 +68,66 @@
   <data name="Screen_Estimate" xml:space="preserve"><value>Sending takes about {0}. Fewer frames or a lower fps make it faster.</value></data>
   <data name="Time_Seconds" xml:space="preserve"><value>{0} s</value></data>
   <data name="Time_Minutes" xml:space="preserve"><value>{0} min {1:00} s</value></data>
+  <data name="Light_Title" xml:space="preserve"><value>Lighting</value></data>
+  <data name="Light_TabEffects" xml:space="preserve"><value>Effects</value></data>
+  <data name="Light_TabPerKey" xml:space="preserve"><value>Per key</value></data>
+  <data name="Light_TabZones" xml:space="preserve"><value>Sides and light bar</value></data>
+  <data name="Light_Color" xml:space="preserve"><value>Colour</value></data>
+  <data name="Light_Rainbow" xml:space="preserve"><value>Rainbow</value></data>
+  <data name="Light_RainbowDesc" xml:space="preserve"><value>Uses many colours instead of one.</value></data>
+  <data name="Light_Brightness" xml:space="preserve"><value>Brightness</value></data>
+  <data name="Light_Speed" xml:space="preserve"><value>Speed</value></data>
+  <data name="Light_Direction" xml:space="preserve"><value>Direction</value></data>
+  <data name="Light_DirectionNormal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Light_DirectionReverse" xml:space="preserve"><value>Reversed</value></data>
+  <data name="Light_Custom" xml:space="preserve"><value>Custom</value></data>
+  <data name="Light_AppliesLive" xml:space="preserve"><value>Changes are applied to the keyboard straight away.</value></data>
+  <data name="Light_NoControls" xml:space="preserve"><value>This effect has no options.</value></data>
+  <data name="Effect_Off" xml:space="preserve"><value>Off</value></data>
+  <data name="Effect_Static" xml:space="preserve"><value>Static</value></data>
+  <data name="Effect_SingleOn" xml:space="preserve"><value>Light on press</value></data>
+  <data name="Effect_SingleOff" xml:space="preserve"><value>Fade on press</value></data>
+  <data name="Effect_Glittering" xml:space="preserve"><value>Glitter</value></data>
+  <data name="Effect_Falling" xml:space="preserve"><value>Rain</value></data>
+  <data name="Effect_Colourful" xml:space="preserve"><value>Multicolour</value></data>
+  <data name="Effect_Breath" xml:space="preserve"><value>Breathing</value></data>
+  <data name="Effect_Spectrum" xml:space="preserve"><value>Spectrum</value></data>
+  <data name="Effect_Outward" xml:space="preserve"><value>Outward</value></data>
+  <data name="Effect_Scrolling" xml:space="preserve"><value>Scrolling</value></data>
+  <data name="Effect_Rolling" xml:space="preserve"><value>Wave</value></data>
+  <data name="Effect_Rotating" xml:space="preserve"><value>Rotating</value></data>
+  <data name="Effect_Explode" xml:space="preserve"><value>Explode</value></data>
+  <data name="Effect_Launch" xml:space="preserve"><value>Launch</value></data>
+  <data name="Effect_Ripples" xml:space="preserve"><value>Ripples</value></data>
+  <data name="Effect_Flowing" xml:space="preserve"><value>Flowing</value></data>
+  <data name="Effect_Pulsating" xml:space="preserve"><value>Pulse</value></data>
+  <data name="Effect_Tilt" xml:space="preserve"><value>Tilt</value></data>
+  <data name="Effect_Shuttle" xml:space="preserve"><value>Shuttle</value></data>
+  <data name="PerKey_Hint" xml:space="preserve"><value>Click a key to select it, or drag to select an area (Ctrl adds to the selection).</value></data>
+  <data name="PerKey_Paint" xml:space="preserve"><value>Paint selection</value></data>
+  <data name="PerKey_Erase" xml:space="preserve"><value>Turn off selection</value></data>
+  <data name="PerKey_SelectAll" xml:space="preserve"><value>Select all</value></data>
+  <data name="PerKey_ClearSelection" xml:space="preserve"><value>Clear selection</value></data>
+  <data name="PerKey_Selected" xml:space="preserve"><value>{0} keys selected</value></data>
+  <data name="PerKey_Apply" xml:space="preserve"><value>Apply to keyboard</value></data>
+  <data name="PerKey_Applied" xml:space="preserve"><value>Colours applied</value></data>
+  <data name="PerKey_Presets" xml:space="preserve"><value>Presets</value></data>
+  <data name="PerKey_PresetGaming" xml:space="preserve"><value>WASD and arrows</value></data>
+  <data name="PerKey_PresetRows" xml:space="preserve"><value>Rainbow rows</value></data>
+  <data name="PerKey_PresetClear" xml:space="preserve"><value>All off</value></data>
+  <data name="PerKey_Note" xml:space="preserve"><value>Keys without a colour stay off. Applying replaces the current effect with these colours.</value></data>
+  <data name="Zones_Intro" xml:space="preserve"><value>The F108 Pro doesn't let a PC change these lights (tested on your keyboard). Use these shortcuts on the keyboard itself:</value></data>
+  <data name="Zones_Sides" xml:space="preserve"><value>Side strips</value></data>
+  <data name="Zones_Bar" xml:space="preserve"><value>Light bar above the arrows</value></data>
+  <data name="Zones_Effect" xml:space="preserve"><value>Change effect</value></data>
+  <data name="Zones_Color" xml:space="preserve"><value>Change colour</value></data>
+  <data name="Zones_Brightness" xml:space="preserve"><value>Change brightness</value></data>
+  <data name="Zones_Speed" xml:space="preserve"><value>Change speed</value></data>
+  <data name="Zones_Power" xml:space="preserve"><value>Turn the bar on/off</value></data>
+  <data name="Zones_Source" xml:space="preserve"><value>Shortcuts from the official F108 Pro manual.</value></data>
+  <data name="Key_RShift" xml:space="preserve"><value>Right Shift</value></data>
+  <data name="Key_LShift" xml:space="preserve"><value>Left Shift</value></data>
+  <data name="Key_RAlt" xml:space="preserve"><value>Right Alt</value></data>
+  <data name="Key_LAlt" xml:space="preserve"><value>Left Alt</value></data>
+  <data name="Key_LCtrl" xml:space="preserve"><value>Left Ctrl</value></data>
 </root>

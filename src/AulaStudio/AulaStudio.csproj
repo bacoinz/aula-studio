@@ -11,6 +11,10 @@
     <PackageReference Include="WPF-UI.Tray" Version="4.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\f108pro-layout.json" />
+  </ItemGroup>
+
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net10.0-windows</TargetFramework>

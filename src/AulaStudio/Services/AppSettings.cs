@@ -26,6 +26,10 @@ public sealed class AppSettings
     /// <summary>The keyboard can't report its state, so the app remembers what it last sent.</summary>
     public LightingSettings Lighting { get; set; } = new();
 
+    /// <summary>Per-key colours by light index, as #RRGGBB.</summary>
+    public Dictionary<int, string> PerKeyColors { get; set; } = [];
+    public int PerKeyBrightness { get; set; } = LightingSettings.MaxBrightness;
+
     public static AppSettings Load()
     {
         try

@@ -41,6 +41,34 @@ public sealed class AulaKeyboard(IAulaTransport transport, TimeSpan? commandDela
         Send(Commands.Finalize(), readback: false);
     }
 
+    /// <summary>Light bar / side LEDs (vendor LED-layer sequence, FUN_00433fd0).</summary>
+    public void SetZone(ZoneMode mode)
+    {
+        Send(Commands.Begin(), readback: true);
+        Send(Commands.LightingInit(), readback: true);
+        Send(Commands.ZoneData(mode), readback: false);
+        Send(Commands.Apply(), readback: true);
+        Send(Commands.Finalize(), readback: false);
+    }
+
+    /// <summary>Gives each key its own colour (FUN_0044b800 then FUN_0044b910). Keys left out stay dark.</summary>
+    public void SetPerKeyColors(IReadOnlyDictionary<int, (byte R, byte G, byte B)> colors, int brightness)
+    {
+        var table = Commands.PerKeyTable(colors);
+
+        Send(Commands.Begin(), readback: true);
+        Send(Commands.LightingInit(), readback: true);
+        Send(Commands.UserLightModeData(brightness), readback: false);
+        Send(Commands.Apply(), readback: true);
+        Send(Commands.Finalize(), readback: false);
+
+        Send(Commands.Begin(), readback: true);
+        Send(Commands.PerKeyInit(), readback: true);
+        SendLarge(table);
+        Send(Commands.Apply(), readback: true);
+        Send(Commands.Finalize(), readback: true);
+    }
+
     /// <summary>Uploads an image to the screen. Writes the keyboard's flash; aborts on the first missing acknowledgement.</summary>
     public void UploadLcdImage(LcdImage image, IProgress<double>? progress = null, CancellationToken cancel = default)
     {
@@ -72,6 +100,35 @@ public sealed class AulaKeyboard(IAulaTransport transport, TimeSpan? commandDela
         _sleep(_delay);
         var reply = transport.GetFeature(report);
         Trace?.Invoke("get", reply);
+    }
+
+    /// <summary>
+    /// Mirrors FUN_0044edc0's long-payload branch: one pause, then each 64-byte slice followed by a pause,
+    /// retrying a rejected slice up to 10 times. The vendor reads nothing back here.
+    /// </summary>
+    private void SendLarge(byte[] payload)
+    {
+        if (payload.Length % Commands.ReportSize != 0)
+            throw new ArgumentException("Long payloads are whole 64-byte reports.", nameof(payload));
+        _sleep(_delay);
+        for (var offset = 0; offset < payload.Length; offset += Commands.ReportSize)
+        {
+            var slice = payload.AsSpan(offset, Commands.ReportSize).ToArray();
+            for (var attempt = 0; ; attempt++)
+            {
+                try
+                {
+                    transport.SetFeature(slice);
+                    Trace?.Invoke($"set+{offset}", slice);
+                    break;
+                }
+                catch (AulaException) when (attempt < 10)
+                {
+                    _sleep(_delay);
+                }
+            }
+            _sleep(_delay);
+        }
     }
 
     public void Dispose() => transport.Dispose();

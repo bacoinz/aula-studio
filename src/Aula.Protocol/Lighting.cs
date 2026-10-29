@@ -25,6 +25,21 @@ public enum LightingEffect : byte
     Shuttle = 19,
 }
 
+/// <summary>Light-bar/side modes from the vendor's LED layer list (combo index + 0x1F).</summary>
+public enum ZoneMode : byte
+{
+    Flowing = 0x1F,
+    Red = 0x20,
+    Yellow = 0x21,
+    Green = 0x22,
+    IceBlue = 0x23,
+    Blue = 0x24,
+    Pink = 0x25,
+    White = 0x26,
+    Neon = 0x27,
+    Off = 0x28,
+}
+
 /// <summary>Which controls an effect uses (the vendor's config_func bitmask).</summary>
 [Flags]
 public enum LightingControls : byte

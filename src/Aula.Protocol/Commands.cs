@@ -75,6 +75,60 @@ public static class Commands
         return r;
     }
 
+    /// <summary>
+    /// Light-bar/side "LED layer" data (FUN_00433fd0): the lighting data report with only the mode byte set.
+    /// The vendor hides this for the F108 Pro (sidelight="0"); whether the firmware honours it is checked on hardware.
+    /// </summary>
+    public static byte[] ZoneData(ZoneMode mode)
+    {
+        var r = new byte[ReportSize];
+        r[0] = (byte)mode;
+        Trailer(r, 14);
+        return r;
+    }
+
+    /// <summary>Switches the backlight to the per-key "user light" mode (FUN_0044b800): mode 0x80, brightness in byte 9.</summary>
+    public static byte[] UserLightModeData(int brightness)
+    {
+        var r = new byte[ReportSize];
+        r[0] = UserLightMode;
+        r[9] = (byte)Math.Clamp(brightness, 0, LightingSettings.MaxBrightness);
+        Trailer(r, 14);
+        return r;
+    }
+
+    public const byte UserLightMode = 0x80;
+
+    /// <summary>Per-key table init (FUN_0044b910): byte 8 = 9 for RGB, 3 for on/off.</summary>
+    public static byte[] PerKeyInit()
+    {
+        var r = Cmd(0x04, 0x23);
+        r[8] = 0x09;
+        return r;
+    }
+
+    public const int PerKeyTableSize = 0x240;
+
+    /// <summary>
+    /// Per-key RGB table (FUN_0044b910): 4 bytes per light index — index, R, G, B — then AA 55 at the end.
+    /// Light indices run 1–123 on the F108 Pro; slot 0 is unused.
+    /// </summary>
+    public static byte[] PerKeyTable(IReadOnlyDictionary<int, (byte R, byte G, byte B)> colors)
+    {
+        var t = new byte[PerKeyTableSize];
+        foreach (var (index, (r, g, b)) in colors)
+        {
+            if (index is < 1 or > (PerKeyTableSize - 2) / 4 - 1)
+                throw new ArgumentOutOfRangeException(nameof(colors), $"Light index {index} is outside the table.");
+            t[index * 4] = (byte)index;
+            t[index * 4 + 1] = r;
+            t[index * 4 + 2] = g;
+            t[index * 4 + 3] = b;
+        }
+        Trailer(t, PerKeyTableSize - 2);
+        return t;
+    }
+
     private static byte[] Cmd(byte a, byte b)
     {
         var r = new byte[ReportSize];

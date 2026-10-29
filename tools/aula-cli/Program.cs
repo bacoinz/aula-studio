@@ -14,6 +14,9 @@ static int Run(string[] args)
             aula-cli clock-sync [--trace]                  Set the screen clock to this PC's time
             aula-cli light <effect> [--color RRGGBB] [--brightness 0-5] [--speed 0-5]
                            [--direction 0|1] [--colorful] [--trace]
+            aula-cli zone <mode> [--trace]                 Light bar / side mode: flowing, red, yellow, green,
+                                                           iceblue, blue, pink, white, neon, off
+            aula-cli perkey-rainbow [--trace]              Per-key colours across the whole keyboard
             aula-cli lcd-solid RRGGBB --yes [--trace]      Upload one solid frame (writes flash)
             aula-cli lcd-delay-test [--ms 500] --yes       Upload 10 coloured frames to check timing (writes flash)
             Effects: off, static, breath, rolling, ... or a number 0-19
@@ -43,6 +46,41 @@ static int Run(string[] args)
                     kb.SetLighting(settings);
                 Console.WriteLine($"Lighting set: {settings}");
                 return 0;
+
+            case "zone":
+            {
+                var mode = Enum.Parse<ZoneMode>(args[1], ignoreCase: true);
+                using (var kb = Open(args))
+                    kb.SetZone(mode);
+                Console.WriteLine($"Zone mode {mode} (0x{(byte)mode:X2}) sent.");
+                return 0;
+            }
+
+            case "perkey-rainbow":
+            {
+                // Every light index 1–123 gets a hue by position, so mistakes in the table are easy to spot.
+                var colors = new Dictionary<int, (byte, byte, byte)>();
+                for (var i = 1; i <= 123; i++) colors[i] = Hue(i / 123.0 * 360);
+                using (var kb = Open(args))
+                    kb.SetPerKeyColors(colors, brightness: 5);
+                Console.WriteLine("Per-key rainbow sent.");
+                return 0;
+            }
+
+            case "perkey":
+            {
+                // perkey 37:FF0000 56:FF0000 … — only the listed light indices light up.
+                var colors = new Dictionary<int, (byte, byte, byte)>();
+                foreach (var spec in args.Skip(1).Where(a => a.Contains(':')))
+                {
+                    var parts = spec.Split(':');
+                    colors[int.Parse(parts[0])] = ParseColor(parts[1]);
+                }
+                using (var kb = Open(args))
+                    kb.SetPerKeyColors(colors, brightness: 5);
+                Console.WriteLine($"Per-key colours sent for {colors.Count} keys.");
+                return 0;
+            }
 
             case "lcd-solid":
             {
@@ -74,6 +112,17 @@ static int Run(string[] args)
         Console.Error.WriteLine($"Error: {e.Message}");
         return 1;
     }
+}
+
+static (byte, byte, byte) Hue(double h)
+{
+    double x = 1 - Math.Abs(h / 60 % 2 - 1);
+    var (r, g, b) = (int)(h / 60) switch
+    {
+        0 => (1.0, x, 0.0), 1 => (x, 1.0, 0.0), 2 => (0.0, 1.0, x),
+        3 => (0.0, x, 1.0), 4 => (x, 0.0, 1.0), _ => (1.0, 0.0, x),
+    };
+    return ((byte)(r * 255), (byte)(g * 255), (byte)(b * 255));
 }
 
 static bool ConfirmedFlashWrite(string[] args)
