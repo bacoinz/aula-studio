@@ -3,6 +3,7 @@ using System.Windows;
 using AulaStudio.Localization;
 using AulaStudio.Services;
 using AulaStudio.Views;
+using AulaStudio.Views.Pages;
 
 namespace AulaStudio;
 
@@ -20,6 +21,10 @@ public partial class App : Application
         Settings = AppSettings.Load();
         Loc.Instance.Culture = Loc.Supported.FirstOrDefault(c => c.Name == Settings.Language) ?? Loc.Supported[0];
         Wpf.Ui.Appearance.ApplicationThemeManager.ApplySystemTheme();
+        ApplyAccent();
+        // Keep the app's own accent when Windows switches between light and dark.
+        Wpf.Ui.Appearance.ApplicationThemeManager.Changed += (_, _) => ApplyAccent();
+        if (e.Args.FirstOrDefault(System.IO.File.Exists) is { } file) ScreenPage.PendingFile = file;
 
         _window = new MainWindow();
         _window.Show();
@@ -31,6 +36,14 @@ public partial class App : Application
         };
         await Keyboard.StartAsync();
     }
+
+    /// <summary>
+    /// A fixed blue accent: the system accent can be grey, which makes primary buttons look disabled.
+    /// </summary>
+    private static void ApplyAccent() =>
+        Wpf.Ui.Appearance.ApplicationAccentColorManager.Apply(
+            System.Windows.Media.Color.FromRgb(0x00, 0x78, 0xD4),
+            Wpf.Ui.Appearance.ApplicationThemeManager.GetAppTheme());
 
     public void ShowWindow()
     {

@@ -37,7 +37,6 @@ public abstract class ComingSoonPage : Page
     private static System.Windows.Data.Binding Tr(string key) => new($"[{key}]") { Source = Loc.Instance };
 }
 
-public sealed class ScreenPage() : ComingSoonPage("Nav_Screen", SymbolRegular.Tv24);
 public sealed class LightingPage() : ComingSoonPage("Nav_Lighting", SymbolRegular.Lightbulb24);
 public sealed class KeysPage() : ComingSoonPage("Nav_Keys", SymbolRegular.Keyboard24);
 public sealed class MacrosPage() : ComingSoonPage("Nav_Macros", SymbolRegular.Record24);

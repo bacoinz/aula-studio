@@ -9,6 +9,12 @@ public sealed class AulaKeyboard(IAulaTransport transport, TimeSpan? commandDela
     public static readonly TimeSpan DefaultCommandDelay = TimeSpan.FromMilliseconds(35);
     public static readonly TimeSpan LcdAckTimeout = TimeSpan.FromMilliseconds(300);
 
+    /// <summary>Measured on a wired F108 Pro: 2231 pages took 329 s (the USB endpoint's own pace).</summary>
+    public static readonly TimeSpan LcdTimePerPage = TimeSpan.FromMilliseconds(148);
+
+    public static TimeSpan EstimateUpload(int frameCount) =>
+        LcdTimePerPage * LcdImage.PagesFor(frameCount) + TimeSpan.FromSeconds(1);
+
     private readonly TimeSpan _delay = commandDelay ?? DefaultCommandDelay;
     private readonly Action<TimeSpan> _sleep = sleep ?? Thread.Sleep;
 

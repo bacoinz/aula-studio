@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Aula.Protocol\Aula.Protocol.csproj" />
+    <ProjectReference Include="..\Aula.Media\Aula.Media.csproj" />
   </ItemGroup>
 
   <ItemGroup>

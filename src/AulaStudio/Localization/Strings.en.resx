@@ -35,4 +35,37 @@
   <data name="Msg_ClockSynced" xml:space="preserve"><value>Clock set</value></data>
   <data name="Msg_NotConnected" xml:space="preserve"><value>Connect the keyboard with a USB cable.</value></data>
   <data name="Msg_Error" xml:space="preserve"><value>Something went wrong</value></data>
+  <data name="Screen_Title" xml:space="preserve"><value>TFT screen</value></data>
+  <data name="Screen_Drop" xml:space="preserve"><value>Drop a GIF, video or image here</value></data>
+  <data name="Screen_DropHint" xml:space="preserve"><value>GIF, MP4, MOV, WebM, PNG, JPG and more</value></data>
+  <data name="Screen_Browse" xml:space="preserve"><value>Choose file</value></data>
+  <data name="Screen_Replace" xml:space="preserve"><value>Change file</value></data>
+  <data name="Screen_FileFilter" xml:space="preserve"><value>Images and videos</value></data>
+  <data name="Screen_ModeFill" xml:space="preserve"><value>Fill</value></data>
+  <data name="Screen_ModeFit" xml:space="preserve"><value>Fit</value></data>
+  <data name="Screen_Zoom" xml:space="preserve"><value>Zoom</value></data>
+  <data name="Screen_Start" xml:space="preserve"><value>Start</value></data>
+  <data name="Screen_End" xml:space="preserve"><value>End</value></data>
+  <data name="Screen_Fps" xml:space="preserve"><value>Frames per second</value></data>
+  <data name="Screen_FpsAuto" xml:space="preserve"><value>Automatic</value></data>
+  <data name="Screen_FrameCount" xml:space="preserve"><value>{0} / {1} frames · {2:0.0} s</value></data>
+  <data name="Screen_Preview" xml:space="preserve"><value>How it will look on the keyboard</value></data>
+  <data name="Screen_Send" xml:space="preserve"><value>Send to keyboard</value></data>
+  <data name="Screen_Sending" xml:space="preserve"><value>Sending… {0:0}%</value></data>
+  <data name="Screen_Sent" xml:space="preserve"><value>Sent to the screen</value></data>
+  <data name="Screen_SentDetail" xml:space="preserve"><value>{0} frames in {1:0} s</value></data>
+  <data name="Screen_Converting" xml:space="preserve"><value>Preparing…</value></data>
+  <data name="Screen_Recent" xml:space="preserve"><value>Recent uploads</value></data>
+  <data name="Screen_RecentEmpty" xml:space="preserve"><value>GIFs and videos you send are kept here so you can use them again.</value></data>
+  <data name="Screen_NoFfmpeg" xml:space="preserve"><value>FFmpeg wasn't found. Install it or put it in an ffmpeg folder next to the app.</value></data>
+  <data name="Screen_CropHint" xml:space="preserve"><value>Drag the rectangle to choose what shows on the screen.</value></data>
+  <data name="Screen_LimitNote" xml:space="preserve"><value>The screen holds up to 141 frames; the app adjusts the frame rate to fit.</value></data>
+  <data name="Screen_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Screen_Load" xml:space="preserve"><value>Use</value></data>
+  <data name="Screen_Animation" xml:space="preserve"><value>Animation</value></data>
+  <data name="Screen_Video" xml:space="preserve"><value>Video</value></data>
+  <data name="Screen_Image" xml:space="preserve"><value>Image</value></data>
+  <data name="Screen_Estimate" xml:space="preserve"><value>Sending takes about {0}. Fewer frames or a lower fps make it faster.</value></data>
+  <data name="Time_Seconds" xml:space="preserve"><value>{0} s</value></data>
+  <data name="Time_Minutes" xml:space="preserve"><value>{0} min {1:00} s</value></data>
 </root>

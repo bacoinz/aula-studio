@@ -20,7 +20,7 @@ public partial class MainWindow : FluentWindow
     {
         InitializeComponent();
         Icon = AppIcon.Create(64);
-        SystemThemeWatcher.Watch(this, WindowBackdropType.Mica);
+        SystemThemeWatcher.Watch(this, WindowBackdropType.Mica, updateAccents: false);
         Navigation.SetPageProviderService(new PageProvider());
         Notify.Attach(Snackbar);
 
