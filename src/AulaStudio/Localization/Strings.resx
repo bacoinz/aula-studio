@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="AppTitle" xml:space="preserve"><value>AULA Studio</value></data>
+  <data name="Nav_Screen" xml:space="preserve"><value>Ecrã</value></data>
+  <data name="Nav_Lighting" xml:space="preserve"><value>Iluminação</value></data>
+  <data name="Nav_Keys" xml:space="preserve"><value>Teclas</value></data>
+  <data name="Nav_Macros" xml:space="preserve"><value>Macros</value></data>
+  <data name="Nav_Profiles" xml:space="preserve"><value>Perfis</value></data>
+  <data name="Nav_Settings" xml:space="preserve"><value>Definições</value></data>
+  <data name="Status_Connected" xml:space="preserve"><value>Ligado por USB</value></data>
+  <data name="Status_Disconnected" xml:space="preserve"><value>Teclado não encontrado</value></data>
+  <data name="Status_Busy" xml:space="preserve"><value>A comunicar com o teclado…</value></data>
+  <data name="ComingSoon_Title" xml:space="preserve"><value>Em construção</value></data>
+  <data name="ComingSoon_Body" xml:space="preserve"><value>Esta secção chega numa das próximas fases.</value></data>
+  <data name="Settings_Language" xml:space="preserve"><value>Idioma</value></data>
+  <data name="Settings_LanguageDesc" xml:space="preserve"><value>Idioma da aplicação.</value></data>
+  <data name="Settings_AutoClock" xml:space="preserve"><value>Acertar o relógio automaticamente</value></data>
+  <data name="Settings_AutoClockDesc" xml:space="preserve"><value>Acerta o relógio do ecrã com a hora do PC sempre que o teclado é ligado.</value></data>
+  <data name="Settings_SyncNow" xml:space="preserve"><value>Acertar agora</value></data>
+  <data name="Settings_MinimizeToTray" xml:space="preserve"><value>Fechar para a bandeja</value></data>
+  <data name="Settings_MinimizeToTrayDesc" xml:space="preserve"><value>Ao fechar a janela, a app continua na bandeja do sistema para acertar o relógio.</value></data>
+  <data name="Settings_Theme" xml:space="preserve"><value>Tema</value></data>
+  <data name="Settings_ThemeDesc" xml:space="preserve"><value>Segue o tema claro ou escuro do Windows.</value></data>
+  <data name="Settings_About" xml:space="preserve"><value>Sobre</value></data>
+  <data name="Settings_AboutBody" xml:space="preserve"><value>Aplicação não oficial para o AULA F108 Pro. Não altera o firmware do teclado.</value></data>
+  <data name="Language_pt" xml:space="preserve"><value>Português</value></data>
+  <data name="Language_en" xml:space="preserve"><value>English</value></data>
+  <data name="Tray_Open" xml:space="preserve"><value>Abrir</value></data>
+  <data name="Tray_SyncClock" xml:space="preserve"><value>Acertar relógio</value></data>
+  <data name="Tray_Exit" xml:space="preserve"><value>Sair</value></data>
+  <data name="Msg_ClockSynced" xml:space="preserve"><value>Relógio acertado</value></data>
+  <data name="Msg_NotConnected" xml:space="preserve"><value>Liga o teclado por cabo USB.</value></data>
+  <data name="Msg_Error" xml:space="preserve"><value>Algo correu mal</value></data>
+</root>
