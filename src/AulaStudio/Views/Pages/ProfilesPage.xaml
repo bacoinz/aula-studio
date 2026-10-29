@@ -1,0 +1,25 @@
+<Page x:Class="AulaStudio.Views.Pages.ProfilesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:l="clr-namespace:AulaStudio.Localization"
+      Foreground="{DynamicResource TextFillColorPrimaryBrush}">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="36,24,36,24" MaxWidth="900" HorizontalAlignment="Stretch">
+            <ui:TextBlock FontTypography="Title" Text="{l:Tr Profiles_Title}" Margin="0,0,0,4" />
+            <ui:TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="{l:Tr Profiles_Hint}" Margin="0,0,0,16" TextWrapping="Wrap" />
+
+            <WrapPanel Margin="0,0,0,16">
+                <ui:Button Appearance="Primary" Content="{l:Tr Profiles_SaveCurrent}" Click="OnSaveCurrent" Margin="0,0,8,8">
+                    <ui:Button.Icon><ui:SymbolIcon Symbol="Save24" /></ui:Button.Icon>
+                </ui:Button>
+                <ui:Button Content="{l:Tr Profiles_Import}" Click="OnImport" Margin="0,0,8,8">
+                    <ui:Button.Icon><ui:SymbolIcon Symbol="ArrowImport24" /></ui:Button.Icon>
+                </ui:Button>
+            </WrapPanel>
+
+            <ui:TextBlock x:Name="Empty" Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="{l:Tr Profiles_Empty}" TextWrapping="Wrap" />
+            <StackPanel x:Name="List" />
+        </StackPanel>
+    </ScrollViewer>
+</Page>

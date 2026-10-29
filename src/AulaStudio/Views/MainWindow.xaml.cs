@@ -21,7 +21,10 @@ public partial class MainWindow : FluentWindow
         InitializeComponent();
         Icon = AppIcon.Create(64);
         SystemThemeWatcher.Watch(this, WindowBackdropType.Mica, updateAccents: false);
-        Navigation.SetPageProviderService(new PageProvider());
+        var pages = new PageProvider();
+        Navigation.SetPageProviderService(pages);
+        // Pages read the setup when created; after a profile loads, rebuild every page but the one on screen.
+        App.ConfigurationReplaced += () => pages.Forget(except: typeof(ProfilesPage));
         Notify.Attach(Snackbar);
 
         App.Keyboard.PropertyChanged += (_, _) => UpdateStatus();
@@ -55,6 +58,11 @@ public partial class MainWindow : FluentWindow
     private sealed class PageProvider : INavigationViewPageProvider
     {
         private readonly Dictionary<Type, object> _pages = [];
+
+        public void Forget(Type except)
+        {
+            foreach (var type in _pages.Keys.Where(t => t != except).ToList()) _pages.Remove(type);
+        }
 
         public object? GetPage(Type pageType)
         {

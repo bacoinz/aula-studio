@@ -168,6 +168,32 @@ public static class Commands
         return r;
     }
 
+    /// <summary>Device options init (FUN_00414230): 04 17 with bytes 2 and 8 = 1.</summary>
+    public static byte[] OptionsInit()
+    {
+        var r = Cmd(0x04, 0x17);
+        r[2] = 0x01;
+        r[8] = 0x01;
+        return r;
+    }
+
+    /// <summary>Device options data (FUN_00414230): 00 01 altTab altF4 win fnSwitch sleep 00 response … AA 55.</summary>
+    public static byte[] OptionsData(DeviceOptions o)
+    {
+        o.Validate();
+        var r = new byte[ReportSize];
+        r[1] = 0x01;
+        // Checkbox order in FUN_00413910: 0x678 = Alt+Tab, 0x67c = Alt+F4, 0x680 = Win.
+        r[2] = (byte)(o.DisableAltTab ? 1 : 0);
+        r[3] = (byte)(o.DisableAltF4 ? 1 : 0);
+        r[4] = (byte)(o.DisableWinKey ? 1 : 0);
+        r[5] = (byte)(o.FnToggle ? 1 : 0);
+        r[6] = (byte)o.Sleep;
+        r[8] = (byte)o.ResponseLevel;
+        Trailer(r, 62);
+        return r;
+    }
+
     private static byte[] Cmd(byte a, byte b)
     {
         var r = new byte[ReportSize];

@@ -99,6 +99,22 @@ static int Run(string[] args)
                 return 0;
             }
 
+            case "options":
+            {
+                // options win=1 altf4=0 alttab=0 fn=0 sleep=0 resp=1 — unnamed options take the vendor defaults.
+                int Arg(string name, int fallback) =>
+                    args.Skip(1).Where(a => a.StartsWith(name + "=")).Select(a => int.Parse(a[(name.Length + 1)..])).DefaultIfEmpty(fallback).First();
+                var options = new DeviceOptions
+                {
+                    DisableWinKey = Arg("win", 0) == 1, DisableAltF4 = Arg("altf4", 0) == 1, DisableAltTab = Arg("alttab", 0) == 1,
+                    FnToggle = Arg("fn", 0) == 1, Sleep = (SleepTime)Arg("sleep", 0), ResponseLevel = Arg("resp", 1),
+                };
+                using (var kb = Open(args))
+                    kb.SetOptions(options);
+                Console.WriteLine($"Options sent: {options}");
+                return 0;
+            }
+
             case "macro-test":
             {
                 // Macro slot 0 types "ab"; bind a key to it with: keymap <idx>:06000000

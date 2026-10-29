@@ -94,3 +94,14 @@ Source: FUN_0042d630 (wired). Verified: a 4-event macro typing "ab".
     - mouse down: `00 00 btn 90`; mouse up: `00 00 btn 10`, where btn is left 1, right 2, middle 4;
     - pause: `lo hi 00 50`, in ms, minimum 10.
   - Padded to whole reports, plus one extra report when it ends exactly on one. `AA 55` goes in the last two bytes. The total is at most 0xE00 bytes.
+
+## Device options
+
+Source: FUN_00414230. Verified: locking the Win key. The lock byte order comes from the checkbox mapping in FUN_00413910.
+
+- **Sequence:** `04 18` RB, `04 17` with bytes 2 and 8 = 1 RB, data with no readback, `04 02` RB.
+- **Data:** `00 01 noAltTab noAltF4 noWin fnToggle sleep 00 response … AA55@62`.
+  - sleep: 0 never, 1 = 1 min, 2 = 5 min, 3 = 30 min;
+  - response: debounce level 1–5;
+  - fnToggle: 0 = while held, 1 = tap to toggle.
+- **Fresh vendor install:** all 0, except response = 1.

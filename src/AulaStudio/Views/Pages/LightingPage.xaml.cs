@@ -146,6 +146,7 @@ public partial class LightingPage : Page
     {
         var settings = CurrentEffect();
         App.Settings.Lighting = settings;
+        App.Settings.PerKeyActive = false;
         App.Settings.Save();
         if (!App.Keyboard.IsConnected) return;
         try
@@ -217,6 +218,7 @@ public partial class LightingPage : Page
         var colors = Board.Colors.ToDictionary(kv => kv.Key, kv => (kv.Value.R, kv.Value.G, kv.Value.B));
         var brightness = (int)KeyBrightness.Value;
         App.Settings.PerKeyBrightness = brightness;
+        App.Settings.PerKeyActive = true;
         SavePerKey();
         ApplyKeys.IsEnabled = false;
         try

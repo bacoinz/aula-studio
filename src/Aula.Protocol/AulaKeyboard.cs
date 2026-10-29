@@ -69,6 +69,16 @@ public sealed class AulaKeyboard(IAulaTransport transport, TimeSpan? commandDela
         Send(Commands.Finalize(), readback: true);
     }
 
+    /// <summary>Sleep, debounce, FN mode and the Win/Alt+F4/Alt+Tab locks (FUN_00414230).</summary>
+    public void SetOptions(DeviceOptions options)
+    {
+        var data = Commands.OptionsData(options);
+        Send(Commands.Begin(), readback: true);
+        Send(Commands.OptionsInit(), readback: true);
+        Send(data, readback: false);
+        Send(Commands.Apply(), readback: true);
+    }
+
     /// <summary>Replaces one layer's remap table (FUN_004185e0). Keys left out keep their default function.</summary>
     public void SetKeyMap(KeyLayer layer, IReadOnlyDictionary<int, KeyAction> actions)
     {

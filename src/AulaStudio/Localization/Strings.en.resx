@@ -220,4 +220,52 @@
   <data name="Macros_DeleteTitle" xml:space="preserve"><value>Delete macro</value></data>
   <data name="Macros_DeleteBody" xml:space="preserve"><value>Delete "{0}"? Keys that use it go back to their original function.</value></data>
   <data name="Common_Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Settings_KeyboardSection" xml:space="preserve"><value>Keyboard</value></data>
+  <data name="Settings_AppSection" xml:space="preserve"><value>App</value></data>
+  <data name="Device_Sleep" xml:space="preserve"><value>Sleep</value></data>
+  <data name="Device_SleepDesc" xml:space="preserve"><value>Turns the lights off and puts the keyboard to rest after this long without use.</value></data>
+  <data name="Device_SleepNever" xml:space="preserve"><value>Never</value></data>
+  <data name="Device_Sleep1" xml:space="preserve"><value>1 minute</value></data>
+  <data name="Device_Sleep5" xml:space="preserve"><value>5 minutes</value></data>
+  <data name="Device_Sleep30" xml:space="preserve"><value>30 minutes</value></data>
+  <data name="Device_Response" xml:space="preserve"><value>Key response time</value></data>
+  <data name="Device_ResponseDesc" xml:space="preserve"><value>Lower is faster; raise it if a key registers twice.</value></data>
+  <data name="Device_ResponseLevel1" xml:space="preserve"><value>(level 1: about 2–3 ms wired)</value></data>
+  <data name="Device_ResponseLevel2" xml:space="preserve"><value>(level 2: about 5–6 ms wired)</value></data>
+  <data name="Device_ResponseLevel3" xml:space="preserve"><value>(level 3: about 8–9 ms wired)</value></data>
+  <data name="Device_ResponseLevel4" xml:space="preserve"><value>(level 4: about 13–14 ms wired)</value></data>
+  <data name="Device_ResponseLevel5" xml:space="preserve"><value>(level 5: about 17–18 ms wired)</value></data>
+  <data name="Device_Fn" xml:space="preserve"><value>FN key</value></data>
+  <data name="Device_FnDesc" xml:space="preserve"><value>How the FN key turns on the FN layer.</value></data>
+  <data name="Device_FnHold" xml:space="preserve"><value>While held</value></data>
+  <data name="Device_FnToggle" xml:space="preserve"><value>Tap to turn on/off</value></data>
+  <data name="Device_Game" xml:space="preserve"><value>Game mode</value></data>
+  <data name="Device_GameDesc" xml:space="preserve"><value>Locks keys that can throw you out of a game by accident.</value></data>
+  <data name="Device_NoWin" xml:space="preserve"><value>Lock the Windows key</value></data>
+  <data name="Device_NoAltF4" xml:space="preserve"><value>Lock Alt + F4</value></data>
+  <data name="Device_NoAltTab" xml:space="preserve"><value>Lock Alt + Tab</value></data>
+  <data name="Device_AppliesLive" xml:space="preserve"><value>Keyboard changes are sent as soon as you change an option.</value></data>
+  <data name="Device_Applied" xml:space="preserve"><value>Keyboard settings sent.</value></data>
+  <data name="Profiles_Title" xml:space="preserve"><value>Profiles</value></data>
+  <data name="Profiles_Hint" xml:space="preserve"><value>A profile keeps everything at once: lighting, keys, macros and keyboard options. Make one for each use (games, work…) and switch with one click.</value></data>
+  <data name="Profiles_SaveCurrent" xml:space="preserve"><value>Save current setup</value></data>
+  <data name="Profiles_Import" xml:space="preserve"><value>Import</value></data>
+  <data name="Profiles_Empty" xml:space="preserve"><value>You don't have any profiles yet. Set the keyboard up the way you like and press "Save current setup".</value></data>
+  <data name="Profiles_Apply" xml:space="preserve"><value>Apply</value></data>
+  <data name="Profiles_Update" xml:space="preserve"><value>Update</value></data>
+  <data name="Profiles_Export" xml:space="preserve"><value>Export</value></data>
+  <data name="Profiles_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Profiles_PerKey" xml:space="preserve"><value>Per-key colours</value></data>
+  <data name="Profiles_Summary" xml:space="preserve"><value>{0} · {1} keys changed · {2} macros · saved {3}</value></data>
+  <data name="Profiles_DefaultName" xml:space="preserve"><value>Profile {0}</value></data>
+  <data name="Profiles_Saved" xml:space="preserve"><value>Profile saved.</value></data>
+  <data name="Profiles_Applied" xml:space="preserve"><value>Profile "{0}" applied to the keyboard.</value></data>
+  <data name="Profiles_LoadedOffline" xml:space="preserve"><value>Profile "{0}" loaded. Connect the keyboard to send it.</value></data>
+  <data name="Profiles_UpdateTitle" xml:space="preserve"><value>Update profile</value></data>
+  <data name="Profiles_UpdateBody" xml:space="preserve"><value>Replace "{0}" with the current setup?</value></data>
+  <data name="Profiles_DeleteTitle" xml:space="preserve"><value>Delete profile</value></data>
+  <data name="Profiles_DeleteBody" xml:space="preserve"><value>Delete the profile "{0}"?</value></data>
+  <data name="Profiles_FileType" xml:space="preserve"><value>AULA Studio profile</value></data>
+  <data name="Profiles_Exported" xml:space="preserve"><value>Profile exported.</value></data>
+  <data name="Profiles_ImportFailed" xml:space="preserve"><value>This profile file couldn't be read.</value></data>
 </root>

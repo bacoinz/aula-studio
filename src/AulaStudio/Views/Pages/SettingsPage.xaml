@@ -8,6 +8,58 @@
         <StackPanel Margin="36,24,36,24" MaxWidth="900" HorizontalAlignment="Stretch">
             <ui:TextBlock FontTypography="Title" Text="{l:Tr Nav_Settings}" Margin="0,0,0,24" />
 
+            <ui:TextBlock FontTypography="Subtitle" Text="{l:Tr Settings_KeyboardSection}" Margin="0,0,0,8" />
+            <ui:CardControl Margin="0,0,0,4">
+                <ui:CardControl.Icon><ui:SymbolIcon Symbol="WeatherMoon24" /></ui:CardControl.Icon>
+                <ui:CardControl.Header>
+                    <StackPanel>
+                        <ui:TextBlock FontTypography="BodyStrong" Text="{l:Tr Device_Sleep}" />
+                        <ui:TextBlock x:Name="Device_SleepDesc" Foreground="{DynamicResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" Text="{l:Tr Device_SleepDesc}" />
+                    </StackPanel>
+                </ui:CardControl.Header>
+                <ComboBox x:Name="SleepBox" MinWidth="180" SelectionChanged="OnDeviceChanged" />
+            </ui:CardControl>
+            <ui:CardControl Margin="0,0,0,4">
+                <ui:CardControl.Icon><ui:SymbolIcon Symbol="Timer24" /></ui:CardControl.Icon>
+                <ui:CardControl.Header>
+                    <StackPanel>
+                        <ui:TextBlock FontTypography="BodyStrong" Text="{l:Tr Device_Response}" />
+                        <ui:TextBlock x:Name="Device_ResponseDesc" Foreground="{DynamicResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" Text="{l:Tr Device_ResponseDesc}" />
+                    </StackPanel>
+                </ui:CardControl.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Slider x:Name="ResponseSlider" Width="180" Minimum="1" Maximum="5" TickFrequency="1" IsSnapToTickEnabled="True"
+                            TickPlacement="BottomRight" ValueChanged="OnDeviceChanged" VerticalAlignment="Center" />
+                    <ui:TextBlock Width="24" Margin="8,0,0,0" VerticalAlignment="Center" TextAlignment="Right" Text="{Binding Value, ElementName=ResponseSlider}" />
+                </StackPanel>
+            </ui:CardControl>
+            <ui:CardControl Margin="0,0,0,4">
+                <ui:CardControl.Icon><ui:SymbolIcon Symbol="Keyboard24" /></ui:CardControl.Icon>
+                <ui:CardControl.Header>
+                    <StackPanel>
+                        <ui:TextBlock FontTypography="BodyStrong" Text="{l:Tr Device_Fn}" />
+                        <ui:TextBlock x:Name="Device_FnDesc" Foreground="{DynamicResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" Text="{l:Tr Device_FnDesc}" />
+                    </StackPanel>
+                </ui:CardControl.Header>
+                <ComboBox x:Name="FnBox" MinWidth="180" SelectionChanged="OnDeviceChanged" />
+            </ui:CardControl>
+            <ui:CardExpander Margin="0,0,0,8" IsExpanded="True">
+                <ui:CardExpander.Icon><ui:SymbolIcon Symbol="Games24" /></ui:CardExpander.Icon>
+                <ui:CardExpander.Header>
+                    <StackPanel>
+                        <ui:TextBlock FontTypography="BodyStrong" Text="{l:Tr Device_Game}" />
+                        <ui:TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" Text="{l:Tr Device_GameDesc}" />
+                    </StackPanel>
+                </ui:CardExpander.Header>
+                <StackPanel>
+                    <CheckBox x:Name="NoWin" Content="{l:Tr Device_NoWin}" Click="OnDeviceChanged" Margin="0,0,0,8" />
+                    <CheckBox x:Name="NoAltF4" Content="{l:Tr Device_NoAltF4}" Click="OnDeviceChanged" Margin="0,0,0,8" />
+                    <CheckBox x:Name="NoAltTab" Content="{l:Tr Device_NoAltTab}" Click="OnDeviceChanged" />
+                </StackPanel>
+            </ui:CardExpander>
+            <ui:TextBlock FontSize="12" Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="{l:Tr Device_AppliesLive}" Margin="0,0,0,24" />
+
+            <ui:TextBlock FontTypography="Subtitle" Text="{l:Tr Settings_AppSection}" Margin="0,0,0,8" />
             <ui:CardControl Margin="0,0,0,4">
                 <ui:CardControl.Icon><ui:SymbolIcon Symbol="LocalLanguage24" /></ui:CardControl.Icon>
                 <ui:CardControl.Header>

@@ -12,6 +12,11 @@ public partial class App : Application
     public static AppSettings Settings { get; private set; } = new();
     public static KeyboardService Keyboard { get; } = new();
 
+    /// <summary>Raised when a profile replaces the current setup, so pages reload what they show.</summary>
+    public static event Action? ConfigurationReplaced;
+
+    public static void RaiseConfigurationReplaced() => ConfigurationReplaced?.Invoke();
+
     private TrayIcon? _tray;
     private MainWindow? _window;
 

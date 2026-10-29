@@ -26,9 +26,15 @@ public sealed class AppSettings
     /// <summary>The keyboard can't report its state, so the app remembers what it last sent.</summary>
     public LightingSettings Lighting { get; set; } = new();
 
+    /// <summary>Sleep, debounce, FN mode and key locks, as last sent.</summary>
+    public DeviceOptions Device { get; set; } = new();
+
     /// <summary>Per-key colours by light index, as #RRGGBB.</summary>
     public Dictionary<int, string> PerKeyColors { get; set; } = [];
     public int PerKeyBrightness { get; set; } = LightingSettings.MaxBrightness;
+
+    /// <summary>Whether the per-key colours (rather than the effect) were sent last.</summary>
+    public bool PerKeyActive { get; set; }
 
     /// <summary>Key remaps by key index, as the 4-byte action packed into a uint. Missing keys keep their default.</summary>
     public Dictionary<int, uint> KeyMap { get; set; } = [];
@@ -36,6 +42,8 @@ public sealed class AppSettings
 
     /// <summary>Macros in slot order; a key's macro action refers to the slot number.</summary>
     public List<MacroDefinition> Macros { get; set; } = [];
+
+    public List<Profile> Profiles { get; set; } = [];
 
     public Dictionary<int, uint> KeyMapFor(KeyLayer layer) => layer == KeyLayer.Fn ? FnKeyMap : KeyMap;
 

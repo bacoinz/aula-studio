@@ -220,4 +220,52 @@
   <data name="Macros_DeleteTitle" xml:space="preserve"><value>Eliminar macro</value></data>
   <data name="Macros_DeleteBody" xml:space="preserve"><value>Eliminar "{0}"? As teclas que a usam voltam ao original.</value></data>
   <data name="Common_Cancel" xml:space="preserve"><value>Cancelar</value></data>
+  <data name="Settings_KeyboardSection" xml:space="preserve"><value>Teclado</value></data>
+  <data name="Settings_AppSection" xml:space="preserve"><value>Aplicação</value></data>
+  <data name="Device_Sleep" xml:space="preserve"><value>Suspensão</value></data>
+  <data name="Device_SleepDesc" xml:space="preserve"><value>Desliga as luzes e o teclado entra em repouso quando não o usas durante este tempo.</value></data>
+  <data name="Device_SleepNever" xml:space="preserve"><value>Nunca</value></data>
+  <data name="Device_Sleep1" xml:space="preserve"><value>1 minuto</value></data>
+  <data name="Device_Sleep5" xml:space="preserve"><value>5 minutos</value></data>
+  <data name="Device_Sleep30" xml:space="preserve"><value>30 minutos</value></data>
+  <data name="Device_Response" xml:space="preserve"><value>Tempo de resposta</value></data>
+  <data name="Device_ResponseDesc" xml:space="preserve"><value>Mais baixo é mais rápido; sobe se alguma tecla registar duas vezes.</value></data>
+  <data name="Device_ResponseLevel1" xml:space="preserve"><value>(nível 1: cerca de 2–3 ms por cabo)</value></data>
+  <data name="Device_ResponseLevel2" xml:space="preserve"><value>(nível 2: cerca de 5–6 ms por cabo)</value></data>
+  <data name="Device_ResponseLevel3" xml:space="preserve"><value>(nível 3: cerca de 8–9 ms por cabo)</value></data>
+  <data name="Device_ResponseLevel4" xml:space="preserve"><value>(nível 4: cerca de 13–14 ms por cabo)</value></data>
+  <data name="Device_ResponseLevel5" xml:space="preserve"><value>(nível 5: cerca de 17–18 ms por cabo)</value></data>
+  <data name="Device_Fn" xml:space="preserve"><value>Tecla FN</value></data>
+  <data name="Device_FnDesc" xml:space="preserve"><value>Como a tecla FN ativa as funções da camada FN.</value></data>
+  <data name="Device_FnHold" xml:space="preserve"><value>Enquanto premida</value></data>
+  <data name="Device_FnToggle" xml:space="preserve"><value>Liga/desliga com um toque</value></data>
+  <data name="Device_Game" xml:space="preserve"><value>Modo jogo</value></data>
+  <data name="Device_GameDesc" xml:space="preserve"><value>Bloqueia teclas que te podem tirar do jogo sem querer.</value></data>
+  <data name="Device_NoWin" xml:space="preserve"><value>Bloquear a tecla Windows</value></data>
+  <data name="Device_NoAltF4" xml:space="preserve"><value>Bloquear Alt + F4</value></data>
+  <data name="Device_NoAltTab" xml:space="preserve"><value>Bloquear Alt + Tab</value></data>
+  <data name="Device_AppliesLive" xml:space="preserve"><value>As alterações do teclado são enviadas logo que mudas uma opção.</value></data>
+  <data name="Device_Applied" xml:space="preserve"><value>Definições do teclado enviadas.</value></data>
+  <data name="Profiles_Title" xml:space="preserve"><value>Perfis</value></data>
+  <data name="Profiles_Hint" xml:space="preserve"><value>Um perfil guarda tudo de uma vez: iluminação, teclas, macros e opções do teclado. Cria um para cada uso (jogos, trabalho…) e troca com um clique.</value></data>
+  <data name="Profiles_SaveCurrent" xml:space="preserve"><value>Guardar configuração atual</value></data>
+  <data name="Profiles_Import" xml:space="preserve"><value>Importar</value></data>
+  <data name="Profiles_Empty" xml:space="preserve"><value>Ainda não tens perfis. Configura o teclado como gostas e carrega em "Guardar configuração atual".</value></data>
+  <data name="Profiles_Apply" xml:space="preserve"><value>Aplicar</value></data>
+  <data name="Profiles_Update" xml:space="preserve"><value>Atualizar</value></data>
+  <data name="Profiles_Export" xml:space="preserve"><value>Exportar</value></data>
+  <data name="Profiles_Delete" xml:space="preserve"><value>Eliminar</value></data>
+  <data name="Profiles_PerKey" xml:space="preserve"><value>Cores tecla a tecla</value></data>
+  <data name="Profiles_Summary" xml:space="preserve"><value>{0} · {1} teclas alteradas · {2} macros · guardado a {3}</value></data>
+  <data name="Profiles_DefaultName" xml:space="preserve"><value>Perfil {0}</value></data>
+  <data name="Profiles_Saved" xml:space="preserve"><value>Perfil guardado.</value></data>
+  <data name="Profiles_Applied" xml:space="preserve"><value>Perfil "{0}" aplicado no teclado.</value></data>
+  <data name="Profiles_LoadedOffline" xml:space="preserve"><value>Perfil "{0}" carregado. Liga o teclado para o enviar.</value></data>
+  <data name="Profiles_UpdateTitle" xml:space="preserve"><value>Atualizar perfil</value></data>
+  <data name="Profiles_UpdateBody" xml:space="preserve"><value>Substituir "{0}" pela configuração atual?</value></data>
+  <data name="Profiles_DeleteTitle" xml:space="preserve"><value>Eliminar perfil</value></data>
+  <data name="Profiles_DeleteBody" xml:space="preserve"><value>Eliminar o perfil "{0}"?</value></data>
+  <data name="Profiles_FileType" xml:space="preserve"><value>Perfil AULA Studio</value></data>
+  <data name="Profiles_Exported" xml:space="preserve"><value>Perfil exportado.</value></data>
+  <data name="Profiles_ImportFailed" xml:space="preserve"><value>Não foi possível ler este ficheiro de perfil.</value></data>
 </root>
