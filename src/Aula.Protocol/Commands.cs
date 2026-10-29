@@ -129,6 +129,45 @@ public static class Commands
         return t;
     }
 
+    /// <summary>Key remap init (FUN_004185e0): 04 11 for the normal layer, 04 27 for the FN layer; byte 8 = 9.</summary>
+    public static byte[] KeyMapInit(KeyLayer layer)
+    {
+        var r = Cmd(0x04, layer == KeyLayer.Fn ? (byte)0x27 : (byte)0x11);
+        r[8] = 0x09;
+        return r;
+    }
+
+    public const int KeyMapTableSize = 0x240;
+    public const int MaxKeyIndex = (KeyMapTableSize - 2) / 4 - 1;
+
+    /// <summary>Key remap table (FUN_004185e0): one 4-byte action per key index, AA 55 at the end. Zeros keep the default.</summary>
+    public static byte[] KeyMapTable(IReadOnlyDictionary<int, KeyAction> actions)
+    {
+        var t = new byte[KeyMapTableSize];
+        foreach (var (index, a) in actions)
+        {
+            if (index is < 1 or > MaxKeyIndex)
+                throw new ArgumentOutOfRangeException(nameof(actions), $"Key index {index} is outside the table.");
+            t[index * 4] = a.B0;
+            t[index * 4 + 1] = a.B1;
+            t[index * 4 + 2] = a.B2;
+            t[index * 4 + 3] = a.B3;
+        }
+        Trailer(t, KeyMapTableSize - 2);
+        return t;
+    }
+
+    /// <summary>Starts a macro upload (FUN_0042d630); it takes the place of 04 18.</summary>
+    public static byte[] MacroInit() => Cmd(0x04, 0x19);
+
+    /// <summary>Macro data header (FUN_0042d630): byte 8 = number of 64-byte reports that follow.</summary>
+    public static byte[] MacroHeader(int reportCount)
+    {
+        var r = Cmd(0x04, 0x15);
+        r[8] = (byte)reportCount;
+        return r;
+    }
+
     private static byte[] Cmd(byte a, byte b)
     {
         var r = new byte[ReportSize];

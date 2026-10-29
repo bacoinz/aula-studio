@@ -30,6 +30,15 @@ public sealed class AppSettings
     public Dictionary<int, string> PerKeyColors { get; set; } = [];
     public int PerKeyBrightness { get; set; } = LightingSettings.MaxBrightness;
 
+    /// <summary>Key remaps by key index, as the 4-byte action packed into a uint. Missing keys keep their default.</summary>
+    public Dictionary<int, uint> KeyMap { get; set; } = [];
+    public Dictionary<int, uint> FnKeyMap { get; set; } = [];
+
+    /// <summary>Macros in slot order; a key's macro action refers to the slot number.</summary>
+    public List<MacroDefinition> Macros { get; set; } = [];
+
+    public Dictionary<int, uint> KeyMapFor(KeyLayer layer) => layer == KeyLayer.Fn ? FnKeyMap : KeyMap;
+
     public static AppSettings Load()
     {
         try
@@ -51,4 +60,10 @@ public sealed class AppSettings
         File.WriteAllText(temp, JsonSerializer.Serialize(this, Json));
         File.Move(temp, FilePath, overwrite: true);
     }
+}
+
+public sealed class MacroDefinition
+{
+    public string Name { get; set; } = "";
+    public List<MacroEvent> Events { get; set; } = [];
 }

@@ -130,4 +130,94 @@
   <data name="Key_RAlt" xml:space="preserve"><value>Alt direito</value></data>
   <data name="Key_LAlt" xml:space="preserve"><value>Alt esquerdo</value></data>
   <data name="Key_LCtrl" xml:space="preserve"><value>Ctrl esquerdo</value></data>
+  <data name="Keys_Title" xml:space="preserve"><value>Teclas</value></data>
+  <data name="Keys_Hint" xml:space="preserve"><value>Escolhe uma tecla no desenho e diz o que ela deve fazer. A camada FN é o que a tecla faz quando a carregas juntamente com FN.</value></data>
+  <data name="Keys_LayerNormal" xml:space="preserve"><value>Camada normal</value></data>
+  <data name="Keys_LayerFn" xml:space="preserve"><value>Camada FN (FN + tecla)</value></data>
+  <data name="Keys_PickKey" xml:space="preserve"><value>Clica numa tecla para a alterar.</value></data>
+  <data name="Keys_CannotSet" xml:space="preserve"><value>A tecla {0} não pode ser alterada.</value></data>
+  <data name="Keys_KeyTitle" xml:space="preserve"><value>Tecla {0}</value></data>
+  <data name="Keys_Does" xml:space="preserve"><value>Faz</value></data>
+  <data name="Keys_Combo" xml:space="preserve"><value>Tecla ou atalho</value></data>
+  <data name="Keys_CaptureHint" xml:space="preserve"><value>Clica aqui e prime a tecla ou combinação</value></data>
+  <data name="Keys_CaptureListening" xml:space="preserve"><value>A ouvir… prime a tecla ou combinação</value></data>
+  <data name="Keys_MouseAction" xml:space="preserve"><value>Ação do rato</value></data>
+  <data name="Keys_MediaAction" xml:space="preserve"><value>Função</value></data>
+  <data name="Keys_Macro" xml:space="preserve"><value>Macro</value></data>
+  <data name="Keys_MacroMode" xml:space="preserve"><value>Reprodução</value></data>
+  <data name="Keys_NoMacros" xml:space="preserve"><value>Ainda não tens macros. Cria uma na página Macros.</value></data>
+  <data name="Keys_ResetKey" xml:space="preserve"><value>Repor esta tecla</value></data>
+  <data name="Keys_ResetLayer" xml:space="preserve"><value>Repor camada</value></data>
+  <data name="Keys_Apply" xml:space="preserve"><value>Enviar para o teclado</value></data>
+  <data name="Keys_Applied" xml:space="preserve"><value>Teclas enviadas para o teclado.</value></data>
+  <data name="Keys_Summary" xml:space="preserve"><value>{0} teclas alteradas nesta camada</value></data>
+  <data name="Keys_Note" xml:space="preserve"><value>As alterações ficam guardadas no PC e só passam para o teclado quando carregas em "Enviar". Para voltar ao original, usa "Repor camada" e envia.</value></data>
+  <data name="KeyType_Default" xml:space="preserve"><value>Original</value></data>
+  <data name="KeyType_Key" xml:space="preserve"><value>Outra tecla ou atalho</value></data>
+  <data name="KeyType_Mouse" xml:space="preserve"><value>Rato</value></data>
+  <data name="KeyType_Media" xml:space="preserve"><value>Multimédia e apps</value></data>
+  <data name="KeyType_Macro" xml:space="preserve"><value>Macro</value></data>
+  <data name="KeyType_Disabled" xml:space="preserve"><value>Desativada</value></data>
+  <data name="Mouse_Left" xml:space="preserve"><value>Clique esquerdo</value></data>
+  <data name="Mouse_Right" xml:space="preserve"><value>Clique direito</value></data>
+  <data name="Mouse_Middle" xml:space="preserve"><value>Clique do meio</value></data>
+  <data name="Mouse_Back" xml:space="preserve"><value>Botão retroceder</value></data>
+  <data name="Mouse_Forward" xml:space="preserve"><value>Botão avançar</value></data>
+  <data name="Mouse_WheelUp" xml:space="preserve"><value>Roda para cima</value></data>
+  <data name="Mouse_WheelDown" xml:space="preserve"><value>Roda para baixo</value></data>
+  <data name="Media_PlayPause" xml:space="preserve"><value>Reproduzir/Pausa</value></data>
+  <data name="Media_Stop" xml:space="preserve"><value>Parar</value></data>
+  <data name="Media_Previous" xml:space="preserve"><value>Faixa anterior</value></data>
+  <data name="Media_Next" xml:space="preserve"><value>Faixa seguinte</value></data>
+  <data name="Media_VolumeUp" xml:space="preserve"><value>Volume +</value></data>
+  <data name="Media_VolumeDown" xml:space="preserve"><value>Volume −</value></data>
+  <data name="Media_Mute" xml:space="preserve"><value>Silenciar</value></data>
+  <data name="Media_Player" xml:space="preserve"><value>Leitor multimédia</value></data>
+  <data name="Media_Calculator" xml:space="preserve"><value>Calculadora</value></data>
+  <data name="Media_Mail" xml:space="preserve"><value>Correio</value></data>
+  <data name="Media_Computer" xml:space="preserve"><value>Este PC</value></data>
+  <data name="Media_WebHome" xml:space="preserve"><value>Browser: página inicial</value></data>
+  <data name="Media_WebSearch" xml:space="preserve"><value>Browser: pesquisar</value></data>
+  <data name="Media_WebBack" xml:space="preserve"><value>Browser: retroceder</value></data>
+  <data name="Media_WebForward" xml:space="preserve"><value>Browser: avançar</value></data>
+  <data name="Media_WebRefresh" xml:space="preserve"><value>Browser: atualizar</value></data>
+  <data name="Media_WebFavorites" xml:space="preserve"><value>Browser: favoritos</value></data>
+  <data name="Shortcut_Copy" xml:space="preserve"><value>Copiar</value></data>
+  <data name="Shortcut_Paste" xml:space="preserve"><value>Colar</value></data>
+  <data name="Shortcut_Cut" xml:space="preserve"><value>Cortar</value></data>
+  <data name="Shortcut_Undo" xml:space="preserve"><value>Anular</value></data>
+  <data name="Shortcut_Desktop" xml:space="preserve"><value>Ambiente de trabalho</value></data>
+  <data name="Shortcut_Explorer" xml:space="preserve"><value>Explorador</value></data>
+  <data name="Shortcut_Lock" xml:space="preserve"><value>Bloquear PC</value></data>
+  <data name="Shortcut_SwitchWindow" xml:space="preserve"><value>Mudar de janela</value></data>
+  <data name="Shortcut_Screenshot" xml:space="preserve"><value>Captura de ecrã</value></data>
+  <data name="Shortcut_TaskManager" xml:space="preserve"><value>Gestor de tarefas</value></data>
+  <data name="Macro_ModeOnce" xml:space="preserve"><value>Uma vez</value></data>
+  <data name="Macro_ModeRepeat" xml:space="preserve"><value>Várias vezes</value></data>
+  <data name="Macro_ModeToggle" xml:space="preserve"><value>Repetir até voltar a premir</value></data>
+  <data name="Macro_ModeHold" xml:space="preserve"><value>Repetir enquanto premida</value></data>
+  <data name="Macros_Title" xml:space="preserve"><value>Macros</value></data>
+  <data name="Macros_Hint" xml:space="preserve"><value>Uma macro é uma sequência de teclas e cliques que o teclado reproduz sozinho. Grava-a aqui e depois atribui-a a uma tecla na página Teclas.</value></data>
+  <data name="Macros_New" xml:space="preserve"><value>Nova</value></data>
+  <data name="Macros_Delete" xml:space="preserve"><value>Eliminar</value></data>
+  <data name="Macros_Empty" xml:space="preserve"><value>Escolhe uma macro à esquerda ou cria uma nova.</value></data>
+  <data name="Macros_Name" xml:space="preserve"><value>Nome</value></data>
+  <data name="Macros_Untitled" xml:space="preserve"><value>(sem nome)</value></data>
+  <data name="Macros_DefaultName" xml:space="preserve"><value>Macro {0}</value></data>
+  <data name="Macros_Record" xml:space="preserve"><value>Gravar</value></data>
+  <data name="Macros_Stop" xml:space="preserve"><value>Parar gravação</value></data>
+  <data name="Macros_RecordDelays" xml:space="preserve"><value>Gravar as pausas reais</value></data>
+  <data name="Macros_DefaultDelay" xml:space="preserve"><value>Pausa por defeito (ms)</value></data>
+  <data name="Macros_AddClick" xml:space="preserve"><value>Adicionar clique:</value></data>
+  <data name="Macros_RemoveStep" xml:space="preserve"><value>Remover passos</value></data>
+  <data name="Macros_Clear" xml:space="preserve"><value>Limpar</value></data>
+  <data name="Macros_Recording" xml:space="preserve"><value>A gravar: tudo o que escreveres no teclado fica na macro. Carrega em "Parar gravação" quando acabares.</value></data>
+  <data name="Macros_Memory" xml:space="preserve"><value>Memória de macros usada: {0}% · {1} passos nesta macro</value></data>
+  <data name="Macros_Full" xml:space="preserve"><value>A memória de macros do teclado está cheia.</value></data>
+  <data name="Macros_Send" xml:space="preserve"><value>Enviar macros</value></data>
+  <data name="Macros_Sent" xml:space="preserve"><value>Macros enviadas para o teclado.</value></data>
+  <data name="Macros_Note" xml:space="preserve"><value>As macros também são enviadas automaticamente quando envias teclas que as usam.</value></data>
+  <data name="Macros_DeleteTitle" xml:space="preserve"><value>Eliminar macro</value></data>
+  <data name="Macros_DeleteBody" xml:space="preserve"><value>Eliminar "{0}"? As teclas que a usam voltam ao original.</value></data>
+  <data name="Common_Cancel" xml:space="preserve"><value>Cancelar</value></data>
 </root>

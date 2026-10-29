@@ -1,0 +1,92 @@
+<Page x:Class="AulaStudio.Views.Pages.KeysPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:l="clr-namespace:AulaStudio.Localization"
+      xmlns:c="clr-namespace:AulaStudio.Controls"
+      Foreground="{DynamicResource TextFillColorPrimaryBrush}">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="36,24,36,24">
+            <ui:TextBlock FontTypography="Title" Text="{l:Tr Keys_Title}" Margin="0,0,0,4" />
+            <ui:TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="{l:Tr Keys_Hint}" Margin="0,0,0,12" TextWrapping="Wrap" />
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                <RadioButton x:Name="LayerNormal" GroupName="Layer" IsChecked="True" Margin="0,0,16,0"
+                             Content="{l:Tr Keys_LayerNormal}" Checked="OnLayerChanged" />
+                <RadioButton x:Name="LayerFn" GroupName="Layer" Content="{l:Tr Keys_LayerFn}" Checked="OnLayerChanged" />
+            </StackPanel>
+
+            <c:KeyboardView x:Name="Board" SingleSelect="True" MaxHeight="300" HorizontalAlignment="Left" />
+
+            <ui:Card Margin="0,12,0,0" Padding="20,16">
+                <StackPanel>
+                    <ui:TextBlock x:Name="NoKey" Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="{l:Tr Keys_PickKey}" />
+
+                    <StackPanel x:Name="Editor" Visibility="Collapsed">
+                        <ui:TextBlock x:Name="KeyTitle" FontTypography="Subtitle" Margin="0,0,0,12" />
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <ui:TextBlock Width="130" VerticalAlignment="Center" Text="{l:Tr Keys_Does}" />
+                            <ComboBox x:Name="ActionType" MinWidth="240" SelectionChanged="OnActionTypeChanged" DisplayMemberPath="Name" />
+                        </StackPanel>
+
+                        <!-- Another key or a combination -->
+                        <StackPanel x:Name="KeyPanel" Visibility="Collapsed">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                <ui:TextBlock Width="130" VerticalAlignment="Center" Text="{l:Tr Keys_Combo}" />
+                                <Border x:Name="Capture" Focusable="True" MinWidth="240" Padding="12,8" CornerRadius="4" BorderThickness="1"
+                                        Background="{DynamicResource ControlFillColorDefaultBrush}"
+                                        BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}" Cursor="Hand"
+                                        MouseLeftButtonDown="OnCaptureClick" PreviewKeyDown="OnCaptureKeyDown" PreviewKeyUp="OnCaptureKeyUp"
+                                        GotKeyboardFocus="OnCaptureFocus" LostKeyboardFocus="OnCaptureBlur">
+                                    <ui:TextBlock x:Name="CaptureText" />
+                                </Border>
+                            </StackPanel>
+                            <WrapPanel x:Name="ShortcutButtons" Margin="130,0,0,4" />
+                        </StackPanel>
+
+                        <StackPanel x:Name="MousePanel" Orientation="Horizontal" Visibility="Collapsed" Margin="0,0,0,8">
+                            <ui:TextBlock Width="130" VerticalAlignment="Center" Text="{l:Tr Keys_MouseAction}" />
+                            <ComboBox x:Name="MouseChoice" MinWidth="240" DisplayMemberPath="Name" SelectionChanged="OnChoiceChanged" />
+                        </StackPanel>
+
+                        <StackPanel x:Name="MediaPanel" Orientation="Horizontal" Visibility="Collapsed" Margin="0,0,0,8">
+                            <ui:TextBlock Width="130" VerticalAlignment="Center" Text="{l:Tr Keys_MediaAction}" />
+                            <ComboBox x:Name="MediaChoice" MinWidth="240" DisplayMemberPath="Name" SelectionChanged="OnChoiceChanged" />
+                        </StackPanel>
+
+                        <StackPanel x:Name="MacroPanel" Visibility="Collapsed">
+                            <ui:TextBlock x:Name="NoMacros" Visibility="Collapsed" Margin="0,0,0,8" TextWrapping="Wrap"
+                                          Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="{l:Tr Keys_NoMacros}" />
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                <ui:TextBlock Width="130" VerticalAlignment="Center" Text="{l:Tr Keys_Macro}" />
+                                <ComboBox x:Name="MacroChoice" MinWidth="240" SelectionChanged="OnChoiceChanged" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                <ui:TextBlock Width="130" VerticalAlignment="Center" Text="{l:Tr Keys_MacroMode}" />
+                                <ComboBox x:Name="ModeChoice" MinWidth="240" DisplayMemberPath="Name" SelectionChanged="OnChoiceChanged" />
+                                <ui:NumberBox x:Name="RepeatCount" Margin="12,0,0,0" Width="130" Minimum="1" Maximum="255" Value="2"
+                                              SmallChange="1" MaxDecimalPlaces="0" ValueChanged="OnRepeatChanged" />
+                            </StackPanel>
+                        </StackPanel>
+
+                        <ui:Button Content="{l:Tr Keys_ResetKey}" Click="OnResetKey" Margin="0,4,0,0">
+                            <ui:Button.Icon><ui:SymbolIcon Symbol="ArrowUndo24" /></ui:Button.Icon>
+                        </ui:Button>
+                    </StackPanel>
+
+                    <Separator Margin="0,16,0,12" />
+                    <DockPanel>
+                        <ui:Button x:Name="ApplyButton" DockPanel.Dock="Right" Appearance="Primary" Content="{l:Tr Keys_Apply}" Click="OnApply">
+                            <ui:Button.Icon><ui:SymbolIcon Symbol="Send24" /></ui:Button.Icon>
+                        </ui:Button>
+                        <ui:Button DockPanel.Dock="Right" Margin="0,0,8,0" Content="{l:Tr Keys_ResetLayer}" Click="OnResetLayer" />
+                        <ui:TextBlock x:Name="Summary" VerticalAlignment="Center" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                    </DockPanel>
+                </StackPanel>
+            </ui:Card>
+            <ui:TextBlock Margin="0,8,0,0" FontSize="12" TextWrapping="Wrap"
+                          Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="{l:Tr Keys_Note}" />
+        </StackPanel>
+    </ScrollViewer>
+</Page>

@@ -25,7 +25,11 @@ public sealed class KeyboardView : Viewbox
         Fill = new SolidColorBrush(Color.FromArgb(0x33, 0x00, 0x78, 0xD4)), Visibility = Visibility.Collapsed,
         IsHitTestVisible = false,
     };
+    private readonly Dictionary<int, string> _captions = [];
     private Point? _dragStart;
+
+    /// <summary>One key at a time: clicks replace the selection and dragging does nothing.</summary>
+    public bool SingleSelect { get; set; }
 
     public event Action? SelectionChanged;
 
@@ -73,7 +77,7 @@ public sealed class KeyboardView : Viewbox
         };
         _canvas.MouseMove += (_, e) =>
         {
-            if (_dragStart is not { } start) return;
+            if (_dragStart is not { } start || SingleSelect) return;
             var r = new Rect(start, e.GetPosition(_canvas));
             _band.Visibility = Visibility.Visible;
             Canvas.SetLeft(_band, r.X);
@@ -90,7 +94,7 @@ public sealed class KeyboardView : Viewbox
             var end = e.GetPosition(_canvas);
             var additive = Keyboard.Modifiers.HasFlag(ModifierKeys.Control);
             if ((end - start).Length < 4) ToggleAt(end);
-            else SelectArea(new Rect(start, end), additive);
+            else if (!SingleSelect) SelectArea(new Rect(start, end), additive);
         };
     }
 
@@ -99,6 +103,22 @@ public sealed class KeyboardView : Viewbox
         if (color is { } c) _colors[lightIndex] = c;
         else _colors.Remove(lightIndex);
         Paint(lightIndex);
+    }
+
+    /// <summary>Replaces a keycap's label (null restores it); the original stays in the tooltip.</summary>
+    public void SetCaption(int lightIndex, string? caption)
+    {
+        if (caption is null) _captions.Remove(lightIndex);
+        else _captions[lightIndex] = caption;
+        if (!_keys.TryGetValue(lightIndex, out var border)) return;
+        var key = (LayoutKey)border.Tag;
+        ((TextBlock)border.Child).Text = caption ?? key.Label;
+        ((TextBlock)border.Child).FontWeight = caption is null ? FontWeights.Normal : FontWeights.SemiBold;
+    }
+
+    public void ClearCaptions()
+    {
+        foreach (var i in _captions.Keys.ToList()) SetCaption(i, null);
     }
 
     public void ClearColors()
@@ -125,8 +145,17 @@ public sealed class KeyboardView : Viewbox
     {
         var hit = _keys.FirstOrDefault(k => Bounds(k.Value).Contains(p));
         if (hit.Value is null) return;
-        if (!_selected.Remove(hit.Key)) _selected.Add(hit.Key);
-        Paint(hit.Key);
+        if (SingleSelect)
+        {
+            _selected.Clear();
+            _selected.Add(hit.Key);
+            RepaintAll();
+        }
+        else
+        {
+            if (!_selected.Remove(hit.Key)) _selected.Add(hit.Key);
+            Paint(hit.Key);
+        }
         SelectionChanged?.Invoke();
     }
 

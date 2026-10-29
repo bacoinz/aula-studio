@@ -69,6 +69,27 @@ public sealed class AulaKeyboard(IAulaTransport transport, TimeSpan? commandDela
         Send(Commands.Finalize(), readback: true);
     }
 
+    /// <summary>Replaces one layer's remap table (FUN_004185e0). Keys left out keep their default function.</summary>
+    public void SetKeyMap(KeyLayer layer, IReadOnlyDictionary<int, KeyAction> actions)
+    {
+        var table = Commands.KeyMapTable(actions);
+        Send(Commands.Begin(), readback: true);
+        Send(Commands.KeyMapInit(layer), readback: true);
+        SendLarge(table);
+        Send(Commands.Apply(), readback: true);
+        Send(Commands.Finalize(), readback: true);
+    }
+
+    /// <summary>Replaces every macro slot (FUN_0042d630). Slot numbers are what <see cref="KeyAction.Macro"/> refers to.</summary>
+    public void SetMacros(IReadOnlyList<IReadOnlyList<MacroEvent>> macros)
+    {
+        var buffer = MacroSet.Build(macros);
+        Send(Commands.MacroInit(), readback: true);
+        Send(Commands.MacroHeader(buffer.Length / Commands.ReportSize), readback: true);
+        SendLarge(buffer);
+        Send(Commands.Apply(), readback: true);
+    }
+
     /// <summary>Uploads an image to the screen. Writes the keyboard's flash; aborts on the first missing acknowledgement.</summary>
     public void UploadLcdImage(LcdImage image, IProgress<double>? progress = null, CancellationToken cancel = default)
     {

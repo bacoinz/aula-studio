@@ -58,9 +58,18 @@ public partial class MainWindow : FluentWindow
 
         public object? GetPage(Type pageType)
         {
-            if (!_pages.TryGetValue(pageType, out var page))
-                _pages[pageType] = page = Activator.CreateInstance(pageType)!;
-            return page;
+            if (_pages.TryGetValue(pageType, out var page)) return page;
+            try
+            {
+                return _pages[pageType] = Activator.CreateInstance(pageType)!;
+            }
+            catch (System.Reflection.TargetInvocationException ex) when (ex.InnerException is { } inner)
+            {
+                // Navigation swallows this; keep a trace so a broken page can be diagnosed.
+                System.IO.Directory.CreateDirectory(AppSettings.Folder);
+                System.IO.File.AppendAllText(System.IO.Path.Combine(AppSettings.Folder, "errors.log"), $"{DateTime.Now:s} {pageType.Name}: {inner}{Environment.NewLine}");
+                throw;
+            }
         }
     }
 }

@@ -82,6 +82,34 @@ static int Run(string[] args)
                 return 0;
             }
 
+            case "keymap":
+            {
+                // keymap [--fn] 115:02000400 … — 4-byte actions as hex; no pairs restores every default.
+                var layer = args.Contains("--fn") ? KeyLayer.Fn : KeyLayer.Normal;
+                var actions = new Dictionary<int, KeyAction>();
+                foreach (var spec in args.Skip(1).Where(a => a.Contains(':')))
+                {
+                    var parts = spec.Split(':');
+                    var b = Convert.FromHexString(parts[1]);
+                    actions[int.Parse(parts[0])] = new KeyAction(b[0], b[1], b[2], b[3]);
+                }
+                using (var kb = Open(args))
+                    kb.SetKeyMap(layer, actions);
+                Console.WriteLine($"{layer} layer remap sent for {actions.Count} keys.");
+                return 0;
+            }
+
+            case "macro-test":
+            {
+                // Macro slot 0 types "ab"; bind a key to it with: keymap <idx>:06000000
+                MacroEvent E(MacroEventKind k, byte code) => new(k, code, 30);
+                using (var kb = Open(args))
+                    kb.SetMacros([[E(MacroEventKind.KeyDown, 0x04), E(MacroEventKind.KeyUp, 0x04),
+                        E(MacroEventKind.KeyDown, 0x05), E(MacroEventKind.KeyUp, 0x05)]]);
+                Console.WriteLine("Macro slot 0 sent.");
+                return 0;
+            }
+
             case "lcd-solid":
             {
                 if (!ConfirmedFlashWrite(args)) return 2;

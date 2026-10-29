@@ -61,3 +61,36 @@ FN + B toggles the light bar's power mode.
 - **Pages:** 4096-byte `WriteFile` to MI_02 (with report ID 0). Each page gets a 64-byte ACK `01 5A 02 00 …`, read with a 300 ms timeout.
 - **Frame limit: N ≤ 141** (`gif_maxframes`). Larger uploads overflow into the menu graphics in flash and corrupt them permanently, as reported upstream.
 - **Verified uploads:** 1 frame = 16 pages; 10 frames = 159 pages.
+
+## Key remap (HW)
+
+Source: FUN_004185e0. Verified: ScrLk → Ctrl+C and Pause → macro, on the normal layer.
+
+- **Sequence:** `04 18` RB, `04 11` (normal layer) or `04 27` (FN layer) with byte 8 = 9 RB, a 576-byte table as nine 64-byte reports, `04 02` RB, `04 F0` RB.
+- **Table:** 4 bytes per key at `key_index · 4`, `AA 55` at 574. All zeros keeps the key's default, so an empty table restores the layer.
+- **Entries:**
+
+| Function | Bytes |
+|---|---|
+| Key / shortcut | `02 mods hid 00` (a lone modifier: `02 bit 00 00`) |
+| Mouse button | `01 01 mask 00` — left 1, right 2, middle 4, back 8, forward 10 |
+| Mouse wheel | `01 03 01 00` (up) / `01 03 FF 00` (down) |
+| Consumer usage | `03 lo hi 00` (media keys, calculator, browser) |
+| Macro | `06 slot mode count` — mode 0 once, 1 count times, 2 until pressed again, 3 while held |
+| Disabled | `05 03 00 00` (vendor type 1; not yet hardware-checked) |
+
+Modifier bits: L-Ctrl 01, L-Shift 02, L-Alt 04, L-Win 08, then the right-hand keys 10–80.
+
+## Macros (HW)
+
+Source: FUN_0042d630 (wired). Verified: a 4-event macro typing "ab".
+
+- **Sequence:** `04 19` RB (in place of `04 18`), `04 15` with byte 8 = report count RB, the buffer as 64-byte reports, `04 02` RB.
+- **Buffer:**
+  - A 400-byte table: one LE16 offset per slot (100 slots); an empty slot is `FF FF FF FF`.
+  - Then each macro: LE16 entry count, 6 zero bytes, then 4-byte entries.
+  - Each input is followed by a pause entry:
+    - key down: `00 00 hid B0`; key up: `00 00 hid 30`;
+    - mouse down: `00 00 btn 90`; mouse up: `00 00 btn 10`, where btn is left 1, right 2, middle 4;
+    - pause: `lo hi 00 50`, in ms, minimum 10.
+  - Padded to whole reports, plus one extra report when it ends exactly on one. `AA 55` goes in the last two bytes. The total is at most 0xE00 bytes.
