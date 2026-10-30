@@ -53,6 +53,8 @@ Other AULA keyboards aren't detected.
 
 The app only works with the F108 Pro, but you can give this repository to an AI coding agent, such as [Claude Code](https://claude.com/claude-code) or [Codex](https://openai.com/codex/), and ask it to adapt the app to your keyboard. Other models may use the same commands, or they may need new ones worked out, so the result isn't guaranteed.
 
+Your keyboard doesn't have to be an AULA: you can also try adapting the code to another brand. Expect more work, because another brand is more likely to use different commands.
+
 You'll need your keyboard and its official app, which the agent can study to see how your model differs. A prompt to start with:
 
 ```text
@@ -122,6 +124,8 @@ A app não tem assinatura digital, por isso o Windows pode mostrar um aviso do S
 ### Tens outro teclado AULA?
 
 A app só funciona com o F108 Pro e por cabo USB. Mas podes dar este repositório a um agente de IA, como o [Claude Code](https://claude.com/claude-code) ou o [Codex](https://openai.com/codex/), e pedir-lhe que o adapte ao teu teclado. Outros modelos podem usar os mesmos comandos ou precisar de novos, por isso o resultado não é garantido.
+
+O teclado nem precisa de ser AULA: também podes experimentar adaptar o código a outra marca. Conta com mais trabalho, porque é mais provável que outra marca use comandos diferentes.
 
 Vais precisar do teclado e da app oficial dele, que o agente pode estudar para ver o que muda. Para começar, podes escrever:
 
