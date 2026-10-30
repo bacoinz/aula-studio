@@ -1,0 +1,14 @@
+AULA Studio includes the following third-party software.
+
+FFmpeg 8.1 (ffmpeg\ffmpeg.exe, ffmpeg\ffprobe.exe)
+  Licensed under the GNU Lesser General Public License, version 3 or later; see ffmpeg\LICENSE-FFmpeg.txt.
+  This is an unmodified LGPL build from https://github.com/BtbN/FFmpeg-Builds.
+  Source code: https://ffmpeg.org/download.html and https://github.com/BtbN/FFmpeg-Builds.
+  AULA Studio runs these programs as separate processes; you may replace them with your own FFmpeg build.
+
+WPF-UI (MIT License) — https://github.com/lepoco/wpfui
+CommunityToolkit.Mvvm (MIT License) — https://github.com/CommunityToolkit/dotnet
+NAudio (MIT License) — https://github.com/naudio/NAudio
+.NET runtime (MIT License) — https://github.com/dotnet/runtime
+
+AULA Studio is not affiliated with AULA. "AULA" and "F108 Pro" are used only to name the keyboard it works with.

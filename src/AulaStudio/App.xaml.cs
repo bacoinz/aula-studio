@@ -22,10 +22,25 @@ public partial class App : Application
 
     private TrayIcon? _tray;
     private MainWindow? _window;
+    private static Mutex? _single;
+    private static EventWaitHandle? _showSignal;
 
     protected override async void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
+        // One copy at a time: two would fight over the keyboard and overwrite each other's settings.
+        _single = new Mutex(true, @"Local\AulaStudio.Single", out var first);
+        _showSignal = new EventWaitHandle(false, EventResetMode.AutoReset, @"Local\AulaStudio.Show");
+        if (!first)
+        {
+            _showSignal.Set();
+            Shutdown();
+            return;
+        }
+        new Thread(() =>
+        {
+            while (_showSignal.WaitOne()) Dispatcher.BeginInvoke(ShowWindow);
+        }) { IsBackground = true }.Start();
         Settings = AppSettings.Load();
         Loc.Instance.Culture = Loc.Supported.FirstOrDefault(c => c.Name == Settings.Language) ?? Loc.Supported[0];
         Wpf.Ui.Appearance.ApplicationThemeManager.ApplySystemTheme();
@@ -35,7 +50,8 @@ public partial class App : Application
         if (e.Args.FirstOrDefault(System.IO.File.Exists) is { } file) ScreenPage.PendingFile = file;
 
         _window = new MainWindow();
-        _window.Show();
+        // Started with Windows: stay in the tray until the user opens the window.
+        if (!e.Args.Contains("--tray")) _window.Show();
         _tray = new TrayIcon(ShowWindow, SyncClockAsync, ExitApp);
 
         Keyboard.Connected += async () =>

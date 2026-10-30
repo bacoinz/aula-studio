@@ -30,11 +30,19 @@ public static class ClipLibrary
         using (var thumb = File.Create(Path.Combine(folder, "thumb.png")))
         {
             var encoder = new PngBitmapEncoder();
-            // A middle frame: many animations start on a black frame.
-            encoder.Frames.Add(BitmapFrame.Create(FrameBitmaps.FromRgb24(clip.Frames[clip.Frames.Count / 2])));
+            encoder.Frames.Add(BitmapFrame.Create(FrameBitmaps.FromRgb24(ThumbnailFrame(clip))));
             encoder.Save(thumb);
         }
         Prune();
+    }
+
+    /// <summary>The brightest of up to ten evenly spaced frames: animations often start or fade on black.</summary>
+    private static byte[] ThumbnailFrame(Clip clip)
+    {
+        var step = Math.Max(1, clip.Frames.Count / 10);
+        return Enumerable.Range(0, clip.Frames.Count).Where(i => i % step == 0)
+            .Select(i => clip.Frames[i])
+            .MaxBy(f => f.Where((_, i) => i % 7 == 0).Sum(b => (long)b))!;
     }
 
     public static IReadOnlyList<Entry> List()

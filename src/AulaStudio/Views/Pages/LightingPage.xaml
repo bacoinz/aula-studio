@@ -15,6 +15,35 @@
             <Setter Property="BorderBrush" Value="{DynamicResource ControlStrokeColorDefaultBrush}" />
             <Setter Property="Background" Value="{DynamicResource ControlFillColorDefaultBrush}" />
         </Style>
+        <!-- Fluent-style tab headers: plain text, accent underline on the selected tab. -->
+        <Style TargetType="TabItem">
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border x:Name="Root" Background="Transparent" CornerRadius="4" Padding="14,8" Margin="0,0,4,0" Cursor="Hand">
+                            <Grid>
+                                <ContentPresenter x:Name="Header" ContentSource="Header" HorizontalAlignment="Center" Margin="0,0,0,6"
+                                                  TextElement.Foreground="{TemplateBinding Foreground}" />
+                                <Border x:Name="Underline" Height="3" Width="20" CornerRadius="1.5" VerticalAlignment="Bottom"
+                                        Background="{DynamicResource AccentFillColorDefaultBrush}" Visibility="Hidden" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Root" Property="Background" Value="{DynamicResource SubtleFillColorSecondaryBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Underline" Property="Visibility" Value="Visible" />
+                                <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
+                                <Setter TargetName="Header" Property="TextElement.FontWeight" Value="SemiBold" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
