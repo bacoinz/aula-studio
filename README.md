@@ -2,7 +2,7 @@
 
 A simple, portable Windows app for the **AULA F108 Pro** keyboard: put GIFs and videos on its screen, control the lights, remap keys, record macros and make the keyboard react to music.
 
-**[Download the latest version](https://github.com/bacoinz/aula-studio/releases/latest)** · [Português](#português)
+**[Download the latest version](https://github.com/bacoinz/aula-studio/releases/latest)**
 
 ![The screen page, with the crop and preview of a GIF](docs/screenshots/screen.png)
 
@@ -101,42 +101,3 @@ GIF and video conversion needs FFmpeg on your `PATH`, or in an `ffmpeg` folder n
 ## Licence
 
 AULA Studio is released under the [MIT Licence](LICENSE). The portable build includes third-party software, including FFmpeg under the LGPL; see [`portable/THIRD-PARTY.txt`](portable/THIRD-PARTY.txt). "AULA" and "F108 Pro" are used only to name the keyboard this app works with.
-
----
-
-## Português
-
-Uma app portátil e simples para Windows, feita para o teclado **AULA F108 Pro**. Põe GIFs e vídeos no ecrã, controla as luzes, remapeia teclas, grava macros e faz o teclado reagir à música.
-
-Este projeto não é oficial nem tem ligação à AULA. Foi feito a estudar a forma como a app oficial comunica com o teclado, por isso usa-o por tua conta e risco.
-
-### Experimentar
-
-1. Fecha a app oficial da AULA, porque só uma app de cada vez pode comunicar com o teclado.
-2. Liga o teclado com o **cabo USB**.
-3. Descarrega o `AulaStudio-Portable-1.0.0.zip` da [página de versões](https://github.com/bacoinz/aula-studio/releases/latest).
-4. Descompacta-o para uma pasta onde possas escrever (não em `Program Files`) e abre o `AulaStudio.exe`.
-
-Não instala nada, nem precisas de .NET ou FFmpeg. Para remover a app, apaga a pasta. As definições ficam numa pasta `data` ao lado do exe.
-
-A app não tem assinatura digital, por isso o Windows pode mostrar um aviso do SmartScreen. Para a abrir na mesma, escolhe **Mais informações** e depois **Executar mesmo assim**.
-
-### Tens outro teclado AULA?
-
-A app só funciona com o F108 Pro e por cabo USB. Mas podes dar este repositório a um agente de IA, como o [Claude Code](https://claude.com/claude-code) ou o [Codex](https://openai.com/codex/), e pedir-lhe que o adapte ao teu teclado. Outros modelos podem usar os mesmos comandos ou precisar de novos, por isso o resultado não é garantido.
-
-O teclado nem precisa de ser AULA: também podes experimentar adaptar o código a outra marca. Conta com mais trabalho, porque é mais provável que outra marca use comandos diferentes.
-
-Vais precisar do teclado e da app oficial dele, que o agente pode estudar para ver o que muda. Para começar, podes escrever:
-
-```text
-Este repositório é uma app para o teclado AULA F108 Pro. Quero adaptá-la ao meu
-AULA [o teu modelo]. A app oficial está instalada em [pasta].
-
-Lê primeiro o docs/protocol.md. Depois compara o meu teclado com o F108 Pro: IDs USB,
-interfaces HID, comandos, disposição das teclas e das luzes, e tamanho do ecrã, se
-tiver. Explica o que muda antes de alterares alguma coisa. Testa primeiro com comandos
-só de leitura, e pergunta-me antes de enviares algo que grave na memória do teclado.
-```
-
-A [secção em inglês](#have-a-different-aula-keyboard-ask-an-ai-to-adapt-it) indica os ficheiros mais importantes para o agente. Tem cuidado com as gravações: comandos errados podem desconfigurar o teclado, sobretudo os que escrevem na memória dele.
