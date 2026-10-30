@@ -286,4 +286,24 @@
   <data name="Music_ColorSingle" xml:space="preserve"><value>Uma cor</value></data>
   <data name="Music_Sensitivity" xml:space="preserve"><value>Sensibilidade</value></data>
   <data name="Music_Note" xml:space="preserve"><value>Funciona enquanto a app estiver aberta (também na bandeja). Ao parar, o teclado volta à iluminação que tinhas; qualquer outra alteração ao teclado também termina este modo.</value></data>
+  <data name="Screen_Compose" xml:space="preserve"><value>Criar imagem</value></data>
+  <data name="Composer_Title" xml:space="preserve"><value>Criar imagem para o ecrã</value></data>
+  <data name="Composer_Back" xml:space="preserve"><value>Voltar</value></data>
+  <data name="Composer_Text" xml:space="preserve"><value>Texto</value></data>
+  <data name="Composer_TextPlaceholder" xml:space="preserve"><value>Escreve o que queres no ecrã (podes usar várias linhas)</value></data>
+  <data name="Composer_Font" xml:space="preserve"><value>Letra</value></data>
+  <data name="Composer_Size" xml:space="preserve"><value>Tamanho</value></data>
+  <data name="Composer_Style" xml:space="preserve"><value>Estilo</value></data>
+  <data name="Composer_Shadow" xml:space="preserve"><value>Sombra</value></data>
+  <data name="Composer_Left" xml:space="preserve"><value>Esquerda</value></data>
+  <data name="Composer_Center" xml:space="preserve"><value>Centro</value></data>
+  <data name="Composer_Right" xml:space="preserve"><value>Direita</value></data>
+  <data name="Composer_Position" xml:space="preserve"><value>Altura</value></data>
+  <data name="Composer_TextColor" xml:space="preserve"><value>Cor do texto</value></data>
+  <data name="Composer_Background" xml:space="preserve"><value>Fundo</value></data>
+  <data name="Composer_PickImage" xml:space="preserve"><value>Usar uma imagem</value></data>
+  <data name="Composer_ClearImage" xml:space="preserve"><value>Tirar imagem</value></data>
+  <data name="Composer_Dim" xml:space="preserve"><value>Escurecer</value></data>
+  <data name="Composer_ImageFiles" xml:space="preserve"><value>Imagens</value></data>
+  <data name="Composer_DefaultName" xml:space="preserve"><value>Imagem</value></data>
 </root>

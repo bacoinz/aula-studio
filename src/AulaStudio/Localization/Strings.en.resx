@@ -286,4 +286,24 @@
   <data name="Music_ColorSingle" xml:space="preserve"><value>One colour</value></data>
   <data name="Music_Sensitivity" xml:space="preserve"><value>Sensitivity</value></data>
   <data name="Music_Note" xml:space="preserve"><value>Works while the app is open (in the tray too). When you stop, the keyboard goes back to your lighting; any other change to the keyboard also ends this mode.</value></data>
+  <data name="Screen_Compose" xml:space="preserve"><value>Create image</value></data>
+  <data name="Composer_Title" xml:space="preserve"><value>Create an image for the screen</value></data>
+  <data name="Composer_Back" xml:space="preserve"><value>Back</value></data>
+  <data name="Composer_Text" xml:space="preserve"><value>Text</value></data>
+  <data name="Composer_TextPlaceholder" xml:space="preserve"><value>Type what you want on the screen (several lines are fine)</value></data>
+  <data name="Composer_Font" xml:space="preserve"><value>Font</value></data>
+  <data name="Composer_Size" xml:space="preserve"><value>Size</value></data>
+  <data name="Composer_Style" xml:space="preserve"><value>Style</value></data>
+  <data name="Composer_Shadow" xml:space="preserve"><value>Shadow</value></data>
+  <data name="Composer_Left" xml:space="preserve"><value>Left</value></data>
+  <data name="Composer_Center" xml:space="preserve"><value>Centre</value></data>
+  <data name="Composer_Right" xml:space="preserve"><value>Right</value></data>
+  <data name="Composer_Position" xml:space="preserve"><value>Height</value></data>
+  <data name="Composer_TextColor" xml:space="preserve"><value>Text colour</value></data>
+  <data name="Composer_Background" xml:space="preserve"><value>Background</value></data>
+  <data name="Composer_PickImage" xml:space="preserve"><value>Use a picture</value></data>
+  <data name="Composer_ClearImage" xml:space="preserve"><value>Remove picture</value></data>
+  <data name="Composer_Dim" xml:space="preserve"><value>Darken</value></data>
+  <data name="Composer_ImageFiles" xml:space="preserve"><value>Images</value></data>
+  <data name="Composer_DefaultName" xml:space="preserve"><value>Image</value></data>
 </root>

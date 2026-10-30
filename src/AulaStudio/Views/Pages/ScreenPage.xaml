@@ -32,14 +32,32 @@
                         <ui:TextBlock FontTypography="Subtitle" HorizontalAlignment="Center" Text="{l:Tr Screen_Drop}" />
                         <ui:TextBlock HorizontalAlignment="Center" Margin="0,6,0,16"
                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="{l:Tr Screen_DropHint}" />
-                        <ui:Button HorizontalAlignment="Center" Appearance="Primary" Content="{l:Tr Screen_Browse}" Click="OnBrowse">
-                            <ui:Button.Icon><ui:SymbolIcon Symbol="FolderOpen24" /></ui:Button.Icon>
-                        </ui:Button>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <ui:Button Appearance="Primary" Content="{l:Tr Screen_Browse}" Click="OnBrowse" Margin="0,0,8,0">
+                                <ui:Button.Icon><ui:SymbolIcon Symbol="FolderOpen24" /></ui:Button.Icon>
+                            </ui:Button>
+                            <ui:Button Content="{l:Tr Screen_Compose}" Click="OnCompose">
+                                <ui:Button.Icon><ui:SymbolIcon Symbol="TextEditStyle24" /></ui:Button.Icon>
+                            </ui:Button>
+                        </StackPanel>
                         <ui:TextBlock x:Name="FfmpegMissing" Visibility="Collapsed" Margin="0,16,0,0" MaxWidth="360" TextWrapping="Wrap"
                                       TextAlignment="Center" Foreground="{DynamicResource SystemFillColorCriticalBrush}"
                                       Text="{l:Tr Screen_NoFfmpeg}" />
                     </StackPanel>
                 </Border>
+
+                <!-- Image composer -->
+                <StackPanel x:Name="ComposerPanel" Visibility="Collapsed">
+                    <DockPanel Margin="0,0,0,8">
+                        <ui:Button DockPanel.Dock="Right" Content="{l:Tr Composer_Back}" Click="OnComposerBack">
+                            <ui:Button.Icon><ui:SymbolIcon Symbol="ArrowLeft24" /></ui:Button.Icon>
+                        </ui:Button>
+                        <ui:TextBlock FontTypography="BodyStrong" VerticalAlignment="Center" Text="{l:Tr Composer_Title}" />
+                    </DockPanel>
+                    <ui:Card Padding="20,16">
+                        <c:ImageComposer x:Name="Composer" />
+                    </ui:Card>
+                </StackPanel>
 
                 <!-- Editor -->
                 <StackPanel x:Name="Editor" Visibility="Collapsed">

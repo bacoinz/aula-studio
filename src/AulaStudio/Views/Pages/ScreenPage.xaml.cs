@@ -36,6 +36,7 @@ public partial class ScreenPage : Page
     public ScreenPage()
     {
         InitializeComponent();
+        Composer.Changed += ShowComposed;
         _debounce.Tick += async (_, _) =>
         {
             _debounce.Stop();
@@ -120,6 +121,7 @@ public partial class ScreenPage : Page
             _updatingUi = false;
 
             DropZone.Visibility = Visibility.Collapsed;
+            ComposerPanel.Visibility = Visibility.Collapsed;
             Editor.Visibility = Visibility.Visible;
             UpdateTexts();
             await GrabFrameAsync(resetCrop: true);
@@ -327,6 +329,31 @@ public partial class ScreenPage : Page
         }
     }
 
+    // ---------- Image composer ----------
+
+    private void OnCompose(object sender, RoutedEventArgs e)
+    {
+        _convertCts?.Cancel();
+        _info = null;
+        DropZone.Visibility = Visibility.Collapsed;
+        Editor.Visibility = Visibility.Collapsed;
+        ComposerPanel.Visibility = Visibility.Visible;
+        ShowComposed();
+    }
+
+    private void OnComposerBack(object sender, RoutedEventArgs e)
+    {
+        ComposerPanel.Visibility = Visibility.Collapsed;
+        DropZone.Visibility = Visibility.Visible;
+    }
+
+    /// <summary>A still image is a one-frame clip, so preview, library and sending work unchanged.</summary>
+    private void ShowComposed()
+    {
+        _clipName = Composer.Title.Length > 0 ? Composer.Title : Loc.T("Composer_DefaultName");
+        ShowClip(new Clip([Composer.Render()], [1000]));
+    }
+
     // ---------- Recent uploads ----------
 
     public sealed record RecentItem(ClipLibrary.Entry Entry, BitmapImage? Thumbnail, string Name, string Detail);
@@ -360,6 +387,7 @@ public partial class ScreenPage : Page
             _info = null;
             _clipName = item.Name;
             Editor.Visibility = Visibility.Collapsed;
+            ComposerPanel.Visibility = Visibility.Collapsed;
             DropZone.Visibility = Visibility.Visible;
             ShowClip(ClipLibrary.Load(item.Entry));
         }
