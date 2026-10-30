@@ -483,4 +483,4 @@ $RECYCLE.BIN/
 
 # Decompiled vendor code: derived from proprietary software, keep local only
 docs/re/
-installer/out/
+portable/out/

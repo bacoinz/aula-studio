@@ -2,9 +2,12 @@ AULA Studio includes the following third-party software.
 
 FFmpeg 8.1 (ffmpeg\ffmpeg.exe, ffmpeg\ffprobe.exe)
   Licensed under the GNU Lesser General Public License, version 3 or later; see ffmpeg\LICENSE-FFmpeg.txt.
-  This is an unmodified LGPL build from https://github.com/BtbN/FFmpeg-Builds.
-  Source code: https://ffmpeg.org/download.html and https://github.com/BtbN/FFmpeg-Builds.
+  This is unmodified FFmpeg source, built with fewer formats by portable/build-ffmpeg.sh in the AULA Studio source.
+  Source code: https://ffmpeg.org/releases/ffmpeg-8.1.tar.xz
   AULA Studio runs these programs as separate processes; you may replace them with your own FFmpeg build.
+
+dav1d (BSD 2-Clause License) and zlib (zlib License), built into the FFmpeg programs above; dav1d's licence is in
+  ffmpeg\LICENSE-FFmpeg.txt.
 
 WPF-UI (MIT License) — https://github.com/lepoco/wpfui
 CommunityToolkit.Mvvm (MIT License) — https://github.com/CommunityToolkit/dotnet
