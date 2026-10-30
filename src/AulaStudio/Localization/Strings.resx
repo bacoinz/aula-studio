@@ -13,6 +13,10 @@
   <data name="Nav_Settings" xml:space="preserve"><value>Definições</value></data>
   <data name="Status_Connected" xml:space="preserve"><value>Ligado por USB</value></data>
   <data name="Status_Disconnected" xml:space="preserve"><value>Teclado não encontrado</value></data>
+  <data name="Status_ConnectedDongle" xml:space="preserve"><value>Ligado por 2.4 GHz · bateria {0}%</value></data>
+  <data name="Status_DongleNoKeyboard" xml:space="preserve"><value>Adaptador ligado; o teclado não responde</value></data>
+  <data name="Screen_NeedsUsb" xml:space="preserve"><value>O ecrã só pode ser alterado por cabo USB. Liga o cabo para enviar.</value></data>
+  <data name="Music_DongleNote" xml:space="preserve"><value>Por 2.4 GHz, é o teclado que desenha o efeito, por isso as opções abaixo não se aplicam.</value></data>
   <data name="Status_Busy" xml:space="preserve"><value>A comunicar com o teclado…</value></data>
   <data name="ComingSoon_Title" xml:space="preserve"><value>Em construção</value></data>
   <data name="ComingSoon_Body" xml:space="preserve"><value>Esta secção chega numa das próximas fases.</value></data>
@@ -275,7 +279,7 @@
   <data name="Music_Stop" xml:space="preserve"><value>Parar</value></data>
   <data name="Music_StateIdle" xml:space="preserve"><value>Desligado. Põe música a tocar e carrega em Começar.</value></data>
   <data name="Music_StateRunning" xml:space="preserve"><value>A reagir ao som do PC. Podes mudar de página; continua a funcionar.</value></data>
-  <data name="Music_StateNoKeyboard" xml:space="preserve"><value>Liga o teclado por cabo para usar este modo.</value></data>
+  <data name="Music_StateNoKeyboard" xml:space="preserve"><value>Liga o teclado para usar este modo.</value></data>
   <data name="Music_Effect" xml:space="preserve"><value>Efeito</value></data>
   <data name="Music_EffectBars" xml:space="preserve"><value>Barras de espectro</value></data>
   <data name="Music_EffectPulse" xml:space="preserve"><value>Pulsação com o grave</value></data>

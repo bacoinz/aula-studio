@@ -72,6 +72,9 @@ public sealed class MusicVisualizer : IDisposable
 
     public bool IsListening => _capture is not null;
 
+    /// <summary>The levels behind the last frame, which is all the dongle can send.</summary>
+    public float[] LastLevels { get; private set; } = new float[Columns];
+
     /// <summary>The most recent frame, for the on-screen preview.</summary>
     public Dictionary<int, (byte R, byte G, byte B)> LastFrame { get; private set; } = [];
 
@@ -162,6 +165,7 @@ public sealed class MusicVisualizer : IDisposable
     public Dictionary<int, (byte R, byte G, byte B)> Frame()
     {
         var levels = Analyse();
+        LastLevels = levels;
         _hue = (_hue + 0.004) % 1;
         var frame = new Dictionary<int, (byte, byte, byte)>();
         var bass = levels.Take(4).Average();

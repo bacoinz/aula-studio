@@ -11,7 +11,7 @@ A simple, portable Windows app for the **AULA F108 Pro** keyboard: put GIFs and 
 ## Features
 
 - **Screen:** drag in a GIF, video or image, then crop, trim and preview it before sending it to the 240×135 screen. You can also compose an image with your own text, and reuse recent uploads.
-- **Lighting:** all the keyboard's effects, per-key colours, and separate control of the sides and light bar.
+- **Lighting:** all the keyboard's effects and per-key colours, plus a guide to the FN shortcuts for the sides and light bar, which the keyboard doesn't let a PC control.
 - **Music lighting:** the keys react to whatever is playing on the PC. No microphone needed.
 - **Keys:** remap keys on the normal and FN layers to other keys, mouse actions, media controls or macros.
 - **Macros:** record sequences of keys and clicks that the keyboard plays by itself.
@@ -31,8 +31,8 @@ A simple, portable Windows app for the **AULA F108 Pro** keyboard: put GIFs and 
 ## Try it
 
 1. Close the official AULA app, because only one app can talk to the keyboard at a time.
-2. Connect the keyboard with the **USB cable**.
-3. Download `AulaStudio-Portable-1.0.0.zip` from the [releases page](https://github.com/bacoinz/aula-studio/releases/latest).
+2. Connect the keyboard with the **USB cable** or its **2.4 GHz dongle**.
+3. Download the latest `AulaStudio-Portable` zip from the [releases page](https://github.com/bacoinz/aula-studio/releases/latest).
 4. Unzip it to any folder you can write to (not `Program Files`) and open `AulaStudio.exe`.
 
 Nothing is installed, and you don't need .NET or FFmpeg. To remove the app, delete the folder. Your settings stay in a `data` folder next to the exe.
@@ -43,11 +43,13 @@ The app isn't digitally signed, so Windows may show a SmartScreen warning. To ru
 
 | | |
 | --- | --- |
-| Keyboard | **AULA F108 Pro only** (USB ID `0C45:800A`) |
-| Connection | USB cable only; 2.4 GHz and Bluetooth aren't supported |
+| Keyboard | **AULA F108 Pro only** (USB ID `0C45:800A`, dongle `05AC:024F`) |
+| Connection | USB cable or 2.4 GHz dongle; Bluetooth isn't supported |
 | System | Windows x64; tested on Windows 11 only |
 
 Other AULA keyboards aren't detected.
+
+Over 2.4 GHz everything works except the screen, which needs the cable, as in the official app. The app also shows the battery level. Music lighting works too, but the keyboard draws the effect itself, so the app's effect options don't apply.
 
 ## Have a different AULA keyboard? Ask an AI to adapt it
 

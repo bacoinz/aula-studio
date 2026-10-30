@@ -57,7 +57,7 @@ public sealed class Profile
     }
 
     /// <summary>Sends the whole setup: options, macros, both key layers, then the lighting.</summary>
-    public void Send(AulaKeyboard kb)
+    public void Send(IAulaKeyboard kb)
     {
         kb.SetOptions(Device);
         kb.SetMacros(Macros.Select(m => (IReadOnlyList<MacroEvent>)m.Events).ToList());

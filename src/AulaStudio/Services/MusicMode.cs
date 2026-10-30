@@ -66,7 +66,7 @@ public sealed partial class MusicMode : ObservableObject
         });
     }
 
-    private void Loop(AulaKeyboard keyboard, CancellationToken cancel)
+    private void Loop(IAulaKeyboard keyboard, CancellationToken cancel)
     {
         using var timer = new TimerResolution();
         var clock = System.Diagnostics.Stopwatch.StartNew();
@@ -77,7 +77,7 @@ public sealed partial class MusicMode : ObservableObject
             // The firmware only updates the keys a frame lists (and drops out of live mode on an empty
             // one), so like the vendor send every key, dark ones as black.
             foreach (var key in KeyboardLayout.Keys) frame.TryAdd(key.LightIndex, (0, 0, 0));
-            keyboard.SendRealtimeFrame(frame);
+            keyboard.SendMusicFrame(frame, Visualizer.LastLevels);
             var rest = FrameInterval - (clock.Elapsed - started);
             if (rest > TimeSpan.Zero) Thread.Sleep(rest);
         }

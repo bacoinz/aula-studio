@@ -27,7 +27,7 @@
     <SatelliteResourceLanguages>pt;en</SatelliteResourceLanguages>
     <AssemblyName>AulaStudio</AssemblyName>
     <Product>AULA Studio</Product>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
     <Description>Configuração do teclado AULA F108 Pro</Description>
   </PropertyGroup>
 

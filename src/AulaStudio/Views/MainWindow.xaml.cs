@@ -36,7 +36,7 @@ public partial class MainWindow : FluentWindow
     private void UpdateStatus()
     {
         var kb = App.Keyboard;
-        StatusText.Text = Loc.T(kb.StatusKey);
+        StatusText.Text = Loc.T(kb.StatusKey, kb.Battery ?? 0);
         StatusDot.Fill = kb.IsBusy ? Busy : kb.IsConnected ? Connected : Disconnected;
     }
 

@@ -13,6 +13,10 @@
   <data name="Nav_Settings" xml:space="preserve"><value>Settings</value></data>
   <data name="Status_Connected" xml:space="preserve"><value>Connected via USB</value></data>
   <data name="Status_Disconnected" xml:space="preserve"><value>Keyboard not found</value></data>
+  <data name="Status_ConnectedDongle" xml:space="preserve"><value>Connected via 2.4 GHz · battery {0}%</value></data>
+  <data name="Status_DongleNoKeyboard" xml:space="preserve"><value>Dongle connected; the keyboard isn't answering</value></data>
+  <data name="Screen_NeedsUsb" xml:space="preserve"><value>The screen can only be changed over USB. Connect the cable to send.</value></data>
+  <data name="Music_DongleNote" xml:space="preserve"><value>Over 2.4 GHz the keyboard draws the effect itself, so the options below don't apply.</value></data>
   <data name="Status_Busy" xml:space="preserve"><value>Talking to the keyboard…</value></data>
   <data name="ComingSoon_Title" xml:space="preserve"><value>Under construction</value></data>
   <data name="ComingSoon_Body" xml:space="preserve"><value>This section arrives in an upcoming phase.</value></data>
@@ -275,7 +279,7 @@
   <data name="Music_Stop" xml:space="preserve"><value>Stop</value></data>
   <data name="Music_StateIdle" xml:space="preserve"><value>Off. Play some music and press Start.</value></data>
   <data name="Music_StateRunning" xml:space="preserve"><value>Reacting to the PC's sound. You can switch pages; it keeps going.</value></data>
-  <data name="Music_StateNoKeyboard" xml:space="preserve"><value>Connect the keyboard by cable to use this mode.</value></data>
+  <data name="Music_StateNoKeyboard" xml:space="preserve"><value>Connect the keyboard to use this mode.</value></data>
   <data name="Music_Effect" xml:space="preserve"><value>Effect</value></data>
   <data name="Music_EffectBars" xml:space="preserve"><value>Spectrum bars</value></data>
   <data name="Music_EffectPulse" xml:space="preserve"><value>Bass pulse</value></data>

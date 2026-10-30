@@ -134,8 +134,34 @@ public static class MacroSet
     /// </summary>
     public static byte[] Build(IReadOnlyList<IReadOnlyList<MacroEvent>> macros)
     {
-        if (macros.Count > MaxMacros) throw new ArgumentException($"At most {MaxMacros} macros.", nameof(macros));
         var buf = new byte[BufferCapacity];
+        var offset = Fill(macros, buf);
+        var reports = offset / Commands.ReportSize + (offset % Commands.ReportSize == 0 ? 1 : 2);
+        return Finish(buf, reports * Commands.ReportSize, macros);
+    }
+
+    /// <summary>The same contents in whole 28-byte chunks (FUN_0042dbb0), and how many bytes the macros use.</summary>
+    public static (byte[] Buffer, int Used) BuildForDongle(IReadOnlyList<IReadOnlyList<MacroEvent>> macros)
+    {
+        var buf = new byte[BufferCapacity];
+        var offset = Fill(macros, buf);
+        var chunks = offset / DongleCommands.ChunkSize + (offset % DongleCommands.ChunkSize == 0 ? 1 : 2);
+        return (Finish(buf, chunks * DongleCommands.ChunkSize, macros), offset);
+    }
+
+    private static byte[] Finish(byte[] buf, int length, IReadOnlyList<IReadOnlyList<MacroEvent>> macros)
+    {
+        if (length > BufferCapacity)
+            throw new ArgumentException("The macros don't fit in the keyboard's macro memory.", nameof(macros));
+        var result = buf.AsSpan(0, length).ToArray();
+        result[length - 2] = 0xAA;
+        result[length - 1] = 0x55;
+        return result;
+    }
+
+    private static int Fill(IReadOnlyList<IReadOnlyList<MacroEvent>> macros, byte[] buf)
+    {
+        if (macros.Count > MaxMacros) throw new ArgumentException($"At most {MaxMacros} macros.", nameof(macros));
         var offset = TableSize;
         for (var slot = 0; slot < macros.Count; slot++)
         {
@@ -171,14 +197,7 @@ public static class MacroSet
             }
             offset = p;
         }
-        var reports = offset / Commands.ReportSize + (offset % Commands.ReportSize == 0 ? 1 : 2);
-        var length = reports * Commands.ReportSize;
-        if (length > BufferCapacity)
-            throw new ArgumentException("The macros don't fit in the keyboard's macro memory.", nameof(macros));
-        var result = buf.AsSpan(0, length).ToArray();
-        result[length - 2] = 0xAA;
-        result[length - 1] = 0x55;
-        return result;
+        return offset;
     }
 
     /// <summary>Bytes still free for more events, so the editor can warn before the memory is full.</summary>

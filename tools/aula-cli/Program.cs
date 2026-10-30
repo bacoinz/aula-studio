@@ -34,6 +34,22 @@ static int Run(string[] args)
                 Console.WriteLine(WindowsHidTransport.Find() is null ? "Vendor interfaces: NOT found" : "Vendor interfaces: found");
                 return 0;
 
+            case "dongle-info":
+                foreach (var d in HidDeviceInfo.Enumerate(DongleTransport.VendorId, DongleTransport.ProductId))
+                    Console.WriteLine($"page {d.UsagePage:X4} usage {d.Usage:X4}  in {d.InputReportLength,4}  out {d.OutputReportLength,4}  feat {d.FeatureReportLength,3}  {d.Path}");
+                if (DongleTransport.Find() is null)
+                {
+                    Console.WriteLine("Dongle vendor interface: NOT found");
+                    return 1;
+                }
+                using (var dongle = AulaDongle.Open())
+                {
+                    var watch = System.Diagnostics.Stopwatch.StartNew();
+                    var battery = dongle.ReadBattery();
+                    Console.WriteLine(battery is null ? "No reply (is the keyboard on, in 2.4 GHz mode?)" : $"Battery {battery}% ({watch.ElapsedMilliseconds} ms)");
+                }
+                return 0;
+
             case "clock-sync":
                 using (var kb = Open(args))
                     kb.SyncClock(DateTime.Now);

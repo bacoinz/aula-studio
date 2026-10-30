@@ -1,3 +1,4 @@
+using System.IO;
 using System.Windows.Threading;
 using Aula.Protocol;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -11,6 +12,9 @@ namespace AulaStudio.Services;
 public sealed partial class KeyboardService : ObservableObject, IDisposable
 {
     private static readonly TimeSpan PollInterval = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan BatteryInterval = TimeSpan.FromSeconds(15);
+
+    private DateTime _lastBatteryAsk;
 
     private readonly SemaphoreSlim _gate = new(1, 1);
     private readonly DispatcherTimer _timer;
@@ -26,6 +30,17 @@ public sealed partial class KeyboardService : ObservableObject, IDisposable
     [NotifyPropertyChangedFor(nameof(StatusKey))]
     private bool _isBusy;
 
+    /// <summary>The link last seen, which can be the dongle even while the keyboard itself doesn't answer.</summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(StatusKey))]
+    private KeyboardLink _link;
+
+    /// <summary>Battery percentage, known only over the dongle.</summary>
+    [ObservableProperty]
+    private int? _battery;
+
+    public bool SupportsScreen => Link == KeyboardLink.Usb;
+
     /// <summary>Raised on the UI thread when the keyboard appears.</summary>
     public event Action? Connected;
 
@@ -35,7 +50,9 @@ public sealed partial class KeyboardService : ObservableObject, IDisposable
     [ObservableProperty]
     private bool _isStreaming;
 
-    public string StatusKey => IsBusy ? "Status_Busy" : IsConnected ? "Status_Connected" : "Status_Disconnected";
+    public string StatusKey => IsBusy ? "Status_Busy"
+        : IsConnected ? Link == KeyboardLink.Dongle ? "Status_ConnectedDongle" : "Status_Connected"
+        : Link == KeyboardLink.Dongle ? "Status_DongleNoKeyboard" : "Status_Disconnected";
 
     public KeyboardService()
     {
@@ -55,7 +72,10 @@ public sealed partial class KeyboardService : ObservableObject, IDisposable
         _polling = true;
         try
         {
-            var present = await Task.Run(() => WindowsHidTransport.Find() is not null);
+            var link = await Task.Run(AulaConnection.Detect);
+            Link = link;
+            var present = link == KeyboardLink.Usb || (link == KeyboardLink.Dongle && await AskDongleAsync());
+            if (link != KeyboardLink.Dongle) Battery = null;
             if (present == IsConnected) return;
             IsConnected = present;
             if (present) Connected?.Invoke();
@@ -66,8 +86,37 @@ public sealed partial class KeyboardService : ObservableObject, IDisposable
         }
     }
 
+    /// <summary>
+    /// The dongle is present whether or not the keyboard is on, so ask the keyboard itself, as often as the vendor (15 s).
+    /// Until that answer changes, and while something else uses the keyboard, the last one stands.
+    /// </summary>
+    private async Task<bool> AskDongleAsync()
+    {
+        if (IsConnected && DateTime.UtcNow - _lastBatteryAsk < BatteryInterval) return true;
+        if (IsStreaming || !await _gate.WaitAsync(0)) return IsConnected;
+        try
+        {
+            _lastBatteryAsk = DateTime.UtcNow;
+            Battery = await Task.Run(() =>
+            {
+                using var dongle = AulaDongle.Open();
+                return dongle.ReadBattery();
+            });
+            return Battery is not null;
+        }
+        catch (Exception e) when (e is AulaException or IOException)
+        {
+            Battery = null;
+            return false;
+        }
+        finally
+        {
+            _gate.Release();
+        }
+    }
+
     /// <summary>Runs <paramref name="work"/> against a freshly opened keyboard. Stops any live stream first.</summary>
-    public async Task RunAsync(Action<AulaKeyboard> work)
+    public async Task RunAsync(Action<IAulaKeyboard> work)
     {
         if (!IsConnected) throw new AulaException(Localization.Loc.T("Msg_NotConnected"));
         await StopStreamAsync();
@@ -77,7 +126,7 @@ public sealed partial class KeyboardService : ObservableObject, IDisposable
         {
             await Task.Run(() =>
             {
-                using var keyboard = AulaKeyboard.OpenUsb();
+                using var keyboard = AulaConnection.Open();
                 work(keyboard);
             });
         }
@@ -92,7 +141,7 @@ public sealed partial class KeyboardService : ObservableObject, IDisposable
     /// Keeps the keyboard open and runs <paramref name="loop"/> on a background thread until stopped,
     /// for live frames (music mode). Any other operation stops the stream before it runs.
     /// </summary>
-    public async Task StartStreamAsync(Action<AulaKeyboard, CancellationToken> loop)
+    public async Task StartStreamAsync(Action<IAulaKeyboard, CancellationToken> loop)
     {
         if (!IsConnected) throw new AulaException(Localization.Loc.T("Msg_NotConnected"));
         await StopStreamAsync();
@@ -106,7 +155,7 @@ public sealed partial class KeyboardService : ObservableObject, IDisposable
             Exception? error = null;
             try
             {
-                using var keyboard = AulaKeyboard.OpenUsb();
+                using var keyboard = AulaConnection.Open();
                 loop(keyboard, cts.Token);
             }
             catch (OperationCanceledException) { }

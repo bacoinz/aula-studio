@@ -291,8 +291,11 @@ public partial class ScreenPage : Page
 
     // ---------- Sending ----------
 
-    private void UpdateSendButton() =>
-        SendButton.IsEnabled = _clip is not null && !_sending && App.Keyboard.IsConnected && Converting.Visibility != Visibility.Visible;
+    private void UpdateSendButton()
+    {
+        SendButton.IsEnabled = _clip is not null && !_sending && App.Keyboard.IsConnected && App.Keyboard.SupportsScreen && Converting.Visibility != Visibility.Visible;
+        if (!_sending) SendStatus.Text = App.Keyboard.Link == KeyboardLink.Dongle ? Loc.T("Screen_NeedsUsb") : "";
+    }
 
     private async void OnSend(object sender, RoutedEventArgs e)
     {

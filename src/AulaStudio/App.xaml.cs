@@ -1,5 +1,8 @@
 ﻿using System.Globalization;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 using AulaStudio.Localization;
 using AulaStudio.Services;
 using AulaStudio.Views;
@@ -41,6 +44,7 @@ public partial class App : Application
         {
             while (_showSignal.WaitOne()) Dispatcher.BeginInvoke(ShowWindow);
         }) { IsBackground = true }.Start();
+        EventManager.RegisterClassHandler(typeof(ScrollViewer), UIElement.PreviewMouseWheelEvent, new MouseWheelEventHandler(PassWheelOn));
         Settings = AppSettings.Load();
         Loc.Instance.Culture = Loc.Supported.FirstOrDefault(c => c.Name == Settings.Language) ?? Loc.Supported[0];
         Wpf.Ui.Appearance.ApplicationThemeManager.ApplySystemTheme();
@@ -59,6 +63,22 @@ public partial class App : Application
             if (Settings.AutoSyncClock) await SyncClockAsync(silent: true);
         };
         await Keyboard.StartAsync();
+    }
+
+    /// <summary>
+    /// A control's own scroll area (a list's, say) takes the wheel even with nothing to scroll,
+    /// which would stop the page scrolling while the mouse is over it. Pass the wheel on instead.
+    /// </summary>
+    private static void PassWheelOn(object sender, MouseWheelEventArgs e)
+    {
+        if (e.Handled || sender is not ScrollViewer { TemplatedParent: not null, ScrollableHeight: <= 0 } scroller) return;
+        if (VisualTreeHelper.GetParent(scroller) is not UIElement parent) return;
+        e.Handled = true;
+        parent.RaiseEvent(new MouseWheelEventArgs(e.MouseDevice, e.Timestamp, e.Delta)
+        {
+            RoutedEvent = UIElement.MouseWheelEvent,
+            Source = scroller,
+        });
     }
 
     /// <summary>

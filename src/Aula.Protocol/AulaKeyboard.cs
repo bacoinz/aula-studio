@@ -4,8 +4,13 @@ namespace Aula.Protocol;
 /// High-level operations on the wired F108 Pro. Every sequence reproduces the vendor app's order,
 /// readbacks and 35 ms pacing (cmd_delaytime), since the firmware ignores commands when either is skipped.
 /// </summary>
-public sealed class AulaKeyboard(IAulaTransport transport, TimeSpan? commandDelay = null, Action<TimeSpan>? sleep = null) : IDisposable
+public sealed class AulaKeyboard(IAulaTransport transport, TimeSpan? commandDelay = null, Action<TimeSpan>? sleep = null) : IAulaKeyboard
 {
+    public bool SupportsScreen => true;
+
+    public void SendMusicFrame(IReadOnlyDictionary<int, (byte R, byte G, byte B)> colors, IReadOnlyList<float> levels) =>
+        SendRealtimeFrame(colors);
+
     public static readonly TimeSpan DefaultCommandDelay = TimeSpan.FromMilliseconds(35);
     public static readonly TimeSpan LcdAckTimeout = TimeSpan.FromMilliseconds(300);
 

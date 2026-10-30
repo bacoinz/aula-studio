@@ -13,7 +13,30 @@ Status legend: **HW** = verified on the keyboard, **RE** = read from the decompi
 | MI_03 | `FF13` | feature 65 (ID 0 + 64) | configuration commands |
 | MI_02 | `FF68` | output 4097, input 65 | LCD pages and their ACKs |
 
-Wired VID:PID `0C45:800A`. The 2.4 GHz dongle is `05AC:024F` (MI_03) and uses other commands; not supported yet.
+Wired VID:PID `0C45:800A`. The 2.4 GHz dongle is `05AC:024F` and uses other commands; see [2.4 GHz dongle](#24-ghz-dongle-hw).
+
+## 2.4 GHz dongle (HW)
+
+Vendor interface MI_03, usage page `FF60`: input and output reports of 33 bytes, sent with `WriteFile`/`ReadFile` (`FUN_0044f4e0`). MI_04 (`FF59`, 65 bytes) isn't used here.
+
+Report: `00 cmd len index data…`, with byte 32 = low byte of the sum of the bytes before it. The keyboard answers each report with one that starts with the same `cmd len index`. There is no begin or apply step; chunks are 2 ms apart.
+
+| Feature | cmd | Payload | Source |
+|---|---|---|---|
+| Battery | `20`, len `01` | reply: percentage at byte 4 of the raw report | `FUN_004357d0` |
+| Effect | `05`, len `10` | wired lighting data's first 16 bytes | `FUN_0042b1e0` |
+| Per-key | `05` with mode `80`, then `14` | user-light data, then the 576-byte table | `FUN_0044bd80` |
+| Clock | `0C`, len `10` | wired clock data's first 14 bytes, `AA 55` | `FUN_00423c40` |
+| Options | `07`, len `10` | wired options data's first 14 bytes, `AA 55` | `FUN_004144a0` |
+| Key remap | `10` normal, `12` FN | the 576-byte table in 28-byte chunks | `FUN_00418e80` |
+| Macros | `09` | see below | `FUN_0042dbb0` |
+| Music | `0B`, len `1C` | foreground, background, brightness, 21 band levels 0–6 | `FUN_00432b60` |
+
+**Macros:** the same buffer as wired, in chunks of 28 bytes. If it uses `n` bytes there are `n/28 + 1` chunks, plus one more when `n%28 ≠ 0`; the last chunk's length byte is `n%28`, and `AA 55` ends it.
+
+**Music:** the firmware draws the effect, so per-key frames aren't available. The foreground and background values come from combo boxes whose data the decompilation doesn't show; the app sends 0, 0 and brightness 5, verified to react to music.
+
+**Screen:** the vendor disables it over the dongle (`screen="0"` under `menu_wireless`), and the app refuses it too.
 
 ## Command pacing (HW)
 

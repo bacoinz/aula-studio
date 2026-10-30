@@ -66,6 +66,8 @@ public partial class MusicPage : Page
         StartIcon.Symbol = running ? SymbolRegular.Stop24 : SymbolRegular.Play24;
         StartButton.IsEnabled = running || App.Keyboard.IsConnected;
         State.Text = Loc.T(running ? "Music_StateRunning" : App.Keyboard.IsConnected ? "Music_StateIdle" : "Music_StateNoKeyboard");
+        // Over the dongle the firmware draws the music itself, so the page's effects don't reach the keyboard.
+        if (App.Keyboard.Link == KeyboardLink.Dongle) State.Text += " " + Loc.T("Music_DongleNote");
         if (running && IsLoaded) _preview.Start();
         else
         {
